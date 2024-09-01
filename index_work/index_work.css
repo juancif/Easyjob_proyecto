@@ -176,6 +176,17 @@ body {
 
 .recuadro_perfil{
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 350px;
+    background-color: gray;
+    border-radius: 60px;
+    border: 1px solid black;
+    margin-top: 200px;
+    margin-left: 100px;
+}
+
+.informacion_perfil{
+    background-color: black;
+    margin-top: 40vh;
+    width: 20vh;
 }
