@@ -42,6 +42,37 @@ body {
     text-decoration: underline;
 }
 
+.search-form {
+    display: flex; /* Usar flexbox para alinear el input y el botón */
+    align-items: center; /* Centrar verticalmente */
+    background-color: #ffffff; /* Fondo blanco para el formulario */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    overflow: hidden; /* Evitar que el contenido se desborde */
+    width: 300px; /* Ancho del formulario */
+}
+
+.search-input {
+    border: none; /* Sin borde para el campo de entrada */
+    padding: 10px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    flex: 1; /* Ocupa el espacio disponible */
+}
+
+.search-button {
+    background-color: #007bff; /* Color del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    font-size: 16px; /* Tamaño de fuente del botón */
+    cursor: pointer; /* Cursor de mano */
+    transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+.search-button:hover {
+    background-color: #0056b3; /* Color del botón al pasar el ratón */
+}
+
 .imgs__menu{
     width: 20px;
     height: 20px;
@@ -141,3 +172,10 @@ body {
 }
 
 
+/*contenido del index*/
+
+.recuadro_perfil{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+}
