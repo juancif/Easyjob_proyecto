@@ -1,3 +1,43 @@
-body{
-    background-image: url(/imagenes/fondo5_login.webp);
+body {
+    background-image: url(imagenes/fondo5_login.webp);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Fuente más profesional */
+}
+
+/* Menú superior */
+.menu_superior {
+    width: 100%;
+    height: 80px; /* Menú un poco más compacto */
+    background-color: #003366; /* Un azul oscuro para un look más profesional */
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 20px; /* Espaciado a los lados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    position: relative; /* Asegura que los elementos hijos se posicionen relativamente */
+}
+
+/* Título principal */
+.titulo_principal {
+    font-size: 2.5rem; /* Tamaño de fuente más responsivo */
+    color: #ffffff; /* Color blanco para el título */
+    margin: 0; /* Elimina el margen */
+    text-align: center; /* Alineación centrada */
+    flex: 1; /* Hace que el título ocupe el espacio disponible */
+}
+
+/* Estilo adicional para enlaces del menú */
+.menu_superior a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 15px; /* Espaciado entre enlaces */
+}
+
+/* Efecto hover para los enlaces del menú */
+.menu_superior a:hover {
+    text-decoration: underline;
 }
