@@ -1,0 +1,143 @@
+body {
+    background-image: url(../imagenes/fondo5_login.webp);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Fuente más profesional */
+}
+
+/* Menú superior */
+.menu_superior {
+    width: 100%;
+    height: 80px; /* Menú un poco más compacto */
+    background-color: #003366; /* Un azul oscuro para un look más profesional */
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 20px; /* Espaciado a los lados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    position: relative; /* Asegura que los elementos hijos se posicionen relativamente */
+}
+
+/* Título principal */
+.titulo_principal {
+    font-size: 2.5rem; /* Tamaño de fuente más responsivo */
+    color: #ffffff; /* Color blanco para el título */
+    margin: 0; /* Elimina el margen */
+    text-align: center; /* Alineación centrada */
+    flex: 1; /* Hace que el título ocupe el espacio disponible */
+}
+
+/* Estilo adicional para enlaces del menú */
+.menu_superior a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 15px; /* Espaciado entre enlaces */
+}
+
+/* Efecto hover para los enlaces del menú */
+.menu_superior a:hover {
+    text-decoration: underline;
+}
+
+.imgs__menu{
+    width: 20px;
+    height: 20px;
+    padding-right:5px;
+    padding-left:0px;
+}
+
+
+.img__usuario{
+    width: 60px;
+    height: 50px;
+    margin-left: 150px;
+    margin-top: 0px;
+    position:relative;
+    background-color: transparent;
+}
+
+.img__usuario:hover{
+    padding-left: 5px;
+}
+
+/* Contenedor del menú */
+.nav__principal {
+    background: #1117;
+    backdrop-filter: blur(10px); /* Color de fondo del menú */
+    padding: 25px 20px; /* Espaciado interno del menú */
+}
+
+/* Lista del menú */
+.nav__list {
+    list-style: none; /* Quitar puntos de lista */
+    padding: 0; /* Quitar padding de la lista */
+    margin: 0; /* Quitar margin de la lista */
+    display: flex; /* Usar flexbox para alinear horizontalmente */
+    flex-wrap: wrap; /* Permitir que los elementos se ajusten a múltiples líneas si es necesario */
+}
+
+/* Elemento del menú */
+.nav__item {
+    margin: 0 20px; /* Margen horizontal entre elementos del menú */
+    font-size: 25px;
+}
+
+/* Enlace del menú */
+.nav__link {
+    text-decoration: none; /* Quitar subrayado */
+    color:white; /* Color del texto */
+    display: flex; /* Usar flexbox para alinear imagen y texto */
+    align-items: center; /* Centrar verticalmente */
+    padding: 8px 12px; /* Padding interno para el enlace */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+/* Imagen del menú */
+.imgs__menu {
+    width: 20px; /* Ajustar el tamaño de las imágenes */
+    height: 20px;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+
+/* Hover del enlace del menú */
+.nav__link:hover {
+    background-color: #303030; /* Color de fondo al hacer hover */
+}
+
+/* Estilo para cerrar sesión */
+.nav__item__user {
+    margin-left: auto; /* Alinear a la derecha */
+}
+
+.cerrar__sesion__link {
+    display: flex; /* Usar flexbox para alinear imagen y texto */
+    align-items: center; /* Centrar verticalmente */
+    text-decoration: none; /* Quitar subrayado */
+    color: #ffffff;/* Color del texto */
+    font-size: 25px; 
+    margin-top: -20px;
+    position:absolute;
+}
+
+.cerrar__sesion__link:hover{
+    padding-left: 5px;
+}
+/* Imagen del usuario */
+.img__usuario {
+    width: 70px; /* Ajustar el tamaño de la imagen del usuario */
+    height: 70px;
+    margin-top: 0px;
+    margin-left: -180px;
+    padding-right: 20px;
+}
+
+/* Botón de cerrar sesión */
+.cerrar__sesion {
+    font-weight: bold; /* Hacer el texto en negrita */
+}
+
+

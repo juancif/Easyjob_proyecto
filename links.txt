@@ -5,3 +5,5 @@ http://localhost/Easyjob_proyecto/register/register.php
 http://localhost/Easyjob_proyecto/register_trabajador/register_work.php
 
 http://localhost/Easyjob_proyecto/index.html
+
+http://localhost/Easyjob_proyecto/index_work/index_work.html
