@@ -1,7 +1,7 @@
-http://localhost/Easyjob/login/login.php
+http://localhost/Easyjob_proyecto/login/login.php
 
-http://localhost/Easyjob_proyecto/Easyjob/register/register.php
+http://localhost/Easyjob_proyecto/register/register.php
 
-http://localhost/Easyjob_proyecto/Easyjob/register_trabajador/register_work.php
+http://localhost/Easyjob_proyecto/register_trabajador/register_work.php
 
-http://localhost/Easyjob_proyecto/Easyjob/index.html
+http://localhost/Easyjob_proyectoindex.html
