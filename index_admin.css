@@ -1,0 +1,46 @@
+/* Estilos del gestor de usuarios */
+.user-management {
+    margin-top: 20px;
+}
+
+.user-actions {
+    margin-bottom: 20px;
+}
+
+.user-actions button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.user-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-list th, .user-list td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.user-list th {
+    background-color: #f4f4f4;
+}
+
+.user-list tr:hover {
+    background-color: #f1f1f1;
+}
+
+.user-list a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.user-list a:hover {
+    text-decoration: underline;
+}
