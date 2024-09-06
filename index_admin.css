@@ -1,46 +1,111 @@
-/* Estilos del gestor de usuarios */
-.user-management {
-    margin-top: 20px;
+body {
+    background-image: url(imagenes/fondo5_login.webp);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Fuente más profesional */
 }
 
-.user-actions {
-    margin-bottom: 20px;
+
+
+.imgs__menu{
+    width: 40px;
+    height: 40px;
+    padding-right:5px;
+    padding-left:0px;
 }
 
-.user-actions button {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    margin-right: 10px;
-    cursor: pointer;
+.imgs__buscar{
+    margin-left: -40px;
+    margin-top: -4vh;
+    width: 30px;
+    height: 30px;
+    padding-right:5px;
+    padding-left:0px;
+    position: absolute;
 }
 
-.user-list table {
-    width: 100%;
-    border-collapse: collapse;
+/* Imagen del usuario */
+.img__usuario {
+    width: 70px; /* Ajustar el tamaño de la imagen del usuario */
+    height: 70px;
+    margin-top: 0px;
+    margin-left: -180px;
+    padding-right: 20px;
 }
 
-.user-list th, .user-list td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
+.img__usuario:hover{
+    padding-left: 5px;
 }
 
-.user-list th {
-    background-color: #f4f4f4;
+/* Contenedor del menú */
+.nav__principal {
+    background: #1117;
+    backdrop-filter: blur(10px); /* Color de fondo del menú */
+    padding: 30px 20px; /* Espaciado interno del menú */
 }
 
-.user-list tr:hover {
-    background-color: #f1f1f1;
+/* Lista del menú */
+.nav__list {
+    list-style: none; /* Quitar puntos de lista */
+    padding: 0; /* Quitar padding de la lista */
+    margin: 0; /* Quitar margin de la lista */
+    display: flex; /* Usar flexbox para alinear horizontalmente */
+    flex-wrap: wrap; /* Permitir que los elementos se ajusten a múltiples líneas si es necesario */
 }
 
-.user-list a {
-    color: #007bff;
-    text-decoration: none;
+/* Elemento del menú */
+.nav__item {
+    margin: 0 40px; /* Margen horizontal entre elementos del menú */
+    font-size: 25px;
 }
 
-.user-list a:hover {
-    text-decoration: underline;
+.nav__buscar{
+    margin-top: 1vb;
+    margin-left: 10vb;
 }
+/* Enlace del menú */
+.nav__link {
+    text-decoration: none; /* Quitar subrayado */
+    color:white; /* Color del texto */
+    display: flex; /* Usar flexbox para alinear imagen y texto */
+    align-items: center; /* Centrar verticalmente */
+    padding: 8px 12px; /* Padding interno para el enlace */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+.nav__link__buscar{
+    width: 300px;
+    height: 20px;
+}
+/* Hover del enlace del menú */
+.nav__link:hover {
+    background-color: #303030; /* Color de fondo al hacer hover */
+}
+
+/* Estilo para cerrar sesión */
+.nav__item__user {
+    margin-left: auto; /* Alinear a la derecha */
+}
+
+.cerrar__sesion__link {
+    display: flex; /* Usar flexbox para alinear imagen y texto */
+    align-items: center; /* Centrar verticalmente */
+    text-decoration: none; /* Quitar subrayado */
+    color: #ffffff;/* Color del texto */
+    font-size: 25px; 
+    margin-top: -20px;
+    position:absolute;
+}
+
+.cerrar__sesion__link:hover{
+    padding-left: 5px;
+}
+
+/* Botón de cerrar sesión */
+.cerrar__sesion {
+    font-weight: bold; /* Hacer el texto en negrita */
+}
+
+

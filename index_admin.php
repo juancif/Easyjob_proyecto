@@ -1,78 +1,36 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Administrador</title>
-    <link rel="stylesheet" href="index_admin.css">
+    <title>Easyjob</title>
+    <link rel="stylesheet" href="index_cliente.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Barra superior -->
-        <header>
-            <div class="search-bar">
-                <input type="text" placeholder="Buscar usuarios...">
-                <button>Buscar</button>
-            </div>
-            <div class="user-options">
-                <a href="logout.php">Cerrar Sesión</a>
-            </div>
-        </header>
+    <nav class="nav__principal">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a href="http://localhost/GateGourmet/listado_maestro/listado_maestro.php" class="nav__link"><img src="imagenes/ajustes.png" alt="Listado_maestro" class="imgs__menu">Ajustes</a>
+            </li>
+            <li class="nav__item">
+                <a href="http://localhost/GateGourmet/Crear_documento/crear.php" class="nav__link"><img src="imagenes/servicios.png" alt="Crear datetime" class="imgs__menu">Servicios </a>
+            </li>
+            <li class="nav__item">
+                <a href="http://localhost/GateGourmet/Gestor_usuarios/php/user/index_gestor.php" class="nav__link"><img src="imagenes/usuarios.png" alt="Gestor_usuarios" class="imgs__menu">Gestor usuarios</a>
+            </li>
+            <li class="nav__item">
+                <a href="http://localhost/GateGourmet/log_eventos/log_eventos.php" class="nav__link"><img src="imagenes/eventos.png" alt="log_eventos" class="imgs__menu">Log de eventos</a>
+            </li>
+            <li class="nav__item nav__buscar">
+                <input placeholder="Buscar" class="nav__link nav__link__buscar"><img src="imagenes/lupa.png" alt="log_eventos" class="imgs__buscar" ></input>
+            </li>
+            <li class="nav__item__user">
+                <a href="http://localhost/GateGourmet/Movimientos/logout.php" class="cerrar__sesion__link"><img src="imagenes/user_verde.png" alt="Usuario" class="img__usuario"><div class="cerrar__sesion">Cerrar Sesión</div></a>
+            </li>
+        </ul>
+    </nav>
+<div class="usuarios">
 
-        <!-- Menú lateral (sin opciones de destacados, mensajes, etc.) -->
-        <nav class="sidebar">
-            <ul>
-                <li><a href="gestor_usuarios.php"><img src="icons/users.png" alt="Gestor de Usuarios"> Gestor de Usuarios</a></li>
-                <li><a href="reportes.php"><img src="icons/reports.png" alt="Reportes"> Reportes</a></li>
-                <li><a href="configuracion_admin.php"><img src="icons/settings.png" alt="Configuración"> Configuración</a></li>
-            </ul>
-        </nav>
-
-        <!-- Contenido Principal -->
-        <main>
-            <section class="user-management">
-                <h2>Gestor de Usuarios</h2>
-                <div class="user-actions">
-                    <button onclick="window.location.href='agregar_usuario.php'">Agregar Usuario</button>
-                    <button onclick="window.location.href='eliminar_usuario.php'">Eliminar Usuario</button>
-                </div>
-                <div class="user-list">
-                    <h3>Usuarios Registrados</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Rol</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Aquí irán los usuarios cargados desde la base de datos -->
-                            <tr>
-                                <td>Juan Pérez</td>
-                                <td>juan.perez@example.com</td>
-                                <td>Cliente</td>
-                                <td>
-                                    <a href="editar_usuario.php?id=1">Editar</a> |
-                                    <a href="eliminar_usuario.php?id=1">Eliminar</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Ana Gómez</td>
-                                <td>ana.gomez@example.com</td>
-                                <td>Trabajador</td>
-                                <td>
-                                    <a href="editar_usuario.php?id=2">Editar</a> |
-                                    <a href="eliminar_usuario.php?id=2">Eliminar</a>
-                                </td>
-                            </tr>
-                            <!-- Agregar más usuarios -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
-    </div>
+</div>
 </body>
 </html>

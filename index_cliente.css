@@ -1,136 +1,111 @@
-/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background-image: url(imagenes/fondo5_login.webp);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Fuente más profesional */
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
+
+
+.imgs__menu{
+    width: 40px;
+    height: 40px;
+    padding-right:5px;
+    padding-left:0px;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
+.imgs__buscar{
+    margin-left: -40px;
+    margin-top: -4vh;
+    width: 30px;
+    height: 30px;
+    padding-right:5px;
+    padding-left:0px;
+    position: absolute;
 }
 
-.search-bar {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
+/* Imagen del usuario */
+.img__usuario {
+    width: 70px; /* Ajustar el tamaño de la imagen del usuario */
+    height: 70px;
+    margin-top: 0px;
+    margin-left: -180px;
+    padding-right: 20px;
 }
 
-.search-bar input {
-    width: 60%;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-right: 10px;
+.img__usuario:hover{
+    padding-left: 5px;
 }
 
-.search-bar button {
-    padding: 8px 16px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+/* Contenedor del menú */
+.nav__principal {
+    background: #1117;
+    backdrop-filter: blur(10px); /* Color de fondo del menú */
+    padding: 30px 20px; /* Espaciado interno del menú */
 }
 
-.user-options a {
-    margin-left: 15px;
-    color: white;
-    text-decoration: none;
+/* Lista del menú */
+.nav__list {
+    list-style: none; /* Quitar puntos de lista */
+    padding: 0; /* Quitar padding de la lista */
+    margin: 0; /* Quitar margin de la lista */
+    display: flex; /* Usar flexbox para alinear horizontalmente */
+    flex-wrap: wrap; /* Permitir que los elementos se ajusten a múltiples líneas si es necesario */
 }
 
-.user-options a:hover {
-    text-decoration: underline;
+/* Elemento del menú */
+.nav__item {
+    margin: 0 40px; /* Margen horizontal entre elementos del menú */
+    font-size: 25px;
 }
 
-/* Estilos del menú lateral */
-.sidebar {
-    width: 250px;
-    background-color: #444;
-    padding-top: 20px;
+.nav__buscar{
+    margin-top: 1vb;
+    margin-left: 10vb;
+}
+/* Enlace del menú */
+.nav__link {
+    text-decoration: none; /* Quitar subrayado */
+    color:white; /* Color del texto */
+    display: flex; /* Usar flexbox para alinear imagen y texto */
+    align-items: center; /* Centrar verticalmente */
+    padding: 8px 12px; /* Padding interno para el enlace */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave para el hover */
 }
 
-.sidebar ul {
-    list-style: none;
-    padding: 0;
+.nav__link__buscar{
+    width: 300px;
+    height: 20px;
+}
+/* Hover del enlace del menú */
+.nav__link:hover {
+    background-color: #303030; /* Color de fondo al hacer hover */
 }
 
-.sidebar ul li {
-    margin-bottom: 15px;
+/* Estilo para cerrar sesión */
+.nav__item__user {
+    margin-left: auto; /* Alinear a la derecha */
 }
 
-.sidebar ul li a {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    color: white;
-    text-decoration: none;
+.cerrar__sesion__link {
+    display: flex; /* Usar flexbox para alinear imagen y texto */
+    align-items: center; /* Centrar verticalmente */
+    text-decoration: none; /* Quitar subrayado */
+    color: #ffffff;/* Color del texto */
+    font-size: 25px; 
+    margin-top: -20px;
+    position:absolute;
 }
 
-.sidebar ul li a:hover {
-    background-color: #333;
+.cerrar__sesion__link:hover{
+    padding-left: 5px;
 }
 
-.sidebar ul li img {
-    margin-right: 10px;
-    width: 24px;
-    height: 24px;
+/* Botón de cerrar sesión */
+.cerrar__sesion {
+    font-weight: bold; /* Hacer el texto en negrita */
 }
 
-/* Estilos del contenido principal */
-main {
-    flex-grow: 1;
-    padding: 20px;
-    background-color: #f4f4f4;
-}
 
-.worker-profiles {
-    margin-top: 20px;
-}
-
-.worker-profiles h2 {
-    color: #333;
-}
-
-.profiles-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.profile-card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 250px;
-    margin: 15px;
-    text-align: center;
-}
-
-.profile-card img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-.profile-card h3 {
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.profile-card p {
-    margin: 5px 0;
-    color: #555;
-}
