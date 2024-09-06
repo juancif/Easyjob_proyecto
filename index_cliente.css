@@ -109,3 +109,32 @@ body {
 }
 
 
+.noticias{
+    width: 140vh;
+    height: 40vh;
+    background-color: gray;
+    border: 1px solid black;
+    position: absolute;
+    margin-top: 10vb;
+    margin-left: 60vh;
+    border-radius: 20px;
+}
+
+.cuadro_perfil{
+    width: 40vh;
+    height: 40vh;
+    background-color: gray;
+    border: 1px solid black;
+    position: absolute;
+    margin-top: 60vb;
+    margin-left: 60vh;
+    border-radius: 20px;
+}
+
+.cuadro_perfil2{
+    margin-left: 110vh;
+}
+
+.cuadro_perfil3{
+    margin-left: 160vh;
+}
