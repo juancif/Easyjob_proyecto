@@ -34,8 +34,18 @@
 <div class="cuadro_perfil"></div>
 
 <div class="cuadro_perfil cuadro_perfil2"></div>
-
 <div class="cuadro_perfil cuadro_perfil3"></div>
 
+<div class="cuadro_perfil cuadro_perfil4"></div>
+
+<div class="cuadro_perfil cuadro_perfil5"></div>
+
+<div class="cuadro_perfil cuadro_perfil6"></div>
+
+<div class="cuadro_perfil cuadro_perfil7"></div>
+
+<div class="cuadro_perfil cuadro_perfil8"></div>
+
+<div class="cuadro_perfil cuadro_perfil9"></div>
 </body>
 </html>

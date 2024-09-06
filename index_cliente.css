@@ -123,12 +123,15 @@ body {
 .cuadro_perfil{
     width: 40vh;
     height: 40vh;
-    background-color: gray;
+
+    background-image: url(imagenes/imagen_perfil.png);
+    background-size: cover;
     border: 1px solid black;
     position: absolute;
     margin-top: 60vb;
     margin-left: 60vh;
     border-radius: 20px;
+    border: 2px solid black;
 }
 
 .cuadro_perfil2{
@@ -137,4 +140,35 @@ body {
 
 .cuadro_perfil3{
     margin-left: 160vh;
+}
+
+.cuadro_perfil4{
+    margin-left: 60vh;
+    margin-top: 110vh;
+}
+
+.cuadro_perfil5{
+    margin-left: 110vh;
+    margin-top: 110vh;
+}
+
+.cuadro_perfil6{
+    margin-left: 160vh;
+    margin-top: 110vh;
+}
+
+.cuadro_perfil7{
+    margin-left: 60vh;
+    margin-top: 160vh;
+    margin-bottom: 10vh;
+}
+
+.cuadro_perfil8{
+    margin-left: 110vh;
+    margin-top: 160vh;
+}
+
+.cuadro_perfil9{
+    margin-left: 160vh;
+    margin-top: 160vh;
 }
