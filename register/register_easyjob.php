@@ -5,24 +5,22 @@ if (isset($_POST['Submit'])) {
     $nombres = $_POST['nombres'];
     $email = $_POST['email'];
     $celular = $_POST['celular'];
-    $documento = $_POST['documento'];
-    $direccion = $_POST['direccion'];
     $contrasena = $_POST['contrasena'];
     $tipo_usuario = $_POST['tipo_usuario']; // cliente o trabajador
 
     // Verificar si algún campo está vacío
-    if (empty($email) || empty($nombre)  || empty($contrasena) || empty($direccion)) {
+    if (empty($nombres) || empty($email)  || empty($celular) || empty($contrasena)) {
         if (empty($email)) {
             echo "<font color='red'>Campo: email está vacío.</font><br/>";
         }
-        if (empty($apellido)) {
-            echo "<font color='red'>Campo: apellido está vacío.</font><br/>";
+        if (empty($nombres)) {
+            echo "<font color='red'>Campo: nombres está vacío.</font><br/>";
+        }
+        if (empty($celular)) {
+            echo "<font color='red'>Campo: celular está vacío.</font><br/>";
         }
         if (empty($contrasena)) {
             echo "<font color='red'>Campo: contraseña está vacío.</font><br/>";
-        }
-        if (empty($direccion)) {
-            echo "<font color='red'>Campo: dirección está vacío.</font><br/>";
         }
         echo "<br/><a href='javascript:self.history.back();'>Volver</a>";
     } else {
@@ -32,23 +30,22 @@ if (isset($_POST['Submit'])) {
 
             // Inserción según el tipo de usuario
             if ($tipo_usuario === 'cliente') {
-                $sql = "INSERT INTO cliente (nombres, email, celular, documento, direccion, contrasena) 
-                        VALUES (:nombres, :email, :celular, :documento, :direccion, :contrasena)";
+                $sql = "INSERT INTO cliente (nombres, email, celular, contrasena) 
+                        VALUES (:nombres, :email, :celular, :contrasena)";
                 $query = $dbConn->prepare($sql);
                 $query->bindparam(':nombres', $nombres);
                 $query->bindparam(':email', $email);
                 $query->bindparam(':celular', $celular);
-                $query->bindparam(':documento', $documento);
-                $query->bindparam(':direccion', $direccion);
                 $query->bindparam(':contrasena', $contrasena); // Asegúrate de usar un hash seguro
             } else if ($tipo_usuario === 'trabajador') {
-                $sql = "INSERT INTO trabajador (identificacion, nombre, apellido, direccion, telefono, fecha_nacimiento) 
-                        VALUES (:identificacion, :nombre, :apellido, :direccion, :telefono, :fecha_nacimiento)";
+                $sql = "INSERT INTO trabajador (nombres, email, celular, contrasena, direccion, fecha_nacimiento, labor) 
+                        VALUES (:nombres, :email, :celular, :contrasena, :direccion, :fecha_nacimiento, :labor)";
                 $query = $dbConn->prepare($sql);
                 $query->bindparam(':nombre', $nombre);
-                $query->bindparam(':identificacion', $identificacion);
+                $query->bindparam(':email', $email);
+                $query->bindparam(':celular', $celular);
+                $query->bindparam(':contrasena', $contrasena);
                 $query->bindparam(':direccion', $direccion);
-                $query->bindparam(':telefono', $celular);
                 $query->bindparam(':fecha_nacimiento', $fecha_nacimiento);
             }
 
@@ -92,20 +89,16 @@ if (isset($_POST['Submit'])) {
                 <h2>Registro de cliente o trabajador</h2>
                 <form method="post" action="">
                     <div class="input-group">
-                        <label for="email">Correo Electrónico</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="input-group">
                         <label for="nombre">Nombre</label>
                         <input type="text" id="nombre" name="nombre" required>
                     </div>
                     <div class="input-group">
-                        <label for="apellido">Apellido</label>
-                        <input type="text" id="apellido" name="apellido" required>
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" required>
                     </div>
                     <div class="input-group">
-                        <label for="direccion">Dirección</label>
-                        <input type="text" id="direccion" name="direccion" required>
+                        <label for="celular">Celular</label>
+                        <input type="text" id="celular" name="celular" required>
                     </div>
                     <div class="input-group">
                         <label for="contrasena">Contraseña</label>
@@ -134,19 +127,18 @@ if (isset($_POST['Submit'])) {
                     <!-- Campos adicionales si es trabajador -->
                     <div id="campos_trabajador" style="display:none;">
                         <div class="input-group">
-                            <label for="identificacion">Identificación</label>
-                            <input type="text" id="identificacion" name="identificacion">
+                            <label for="direccion">Dirección</label>
+                            <input type="text" id="direccion" name="direccion">
                         </div>
-                        <div class="input-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="text" id="telefono" name="telefono">
-                        </div>
-                        <div class="input-group">
+                        <div class="input-group" style="display:none;">
                             <label for="fecha_nacimiento">Fecha de Nacimiento</label>
                             <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
                         </div>
                     </div>
-
+                    <div class="input-group" style="display:none;">
+                            <label for="labor">Labor</label>
+                            <input type="text" id="telefono" name="labor">
+                        </div>
                     <div class="buttons">
                         <input type="submit" name="Submit" value="Registrarse" class="Registrarse">
                         <a href="http://localhost/Easyjob_proyecto/login/login_easyjob.php" class="regresar">Regresar</a>
