@@ -1,37 +1,34 @@
-Create database easyjob
-use easyjob
+Create database easyjob;
+use easyjob;
 
 CREATE TABLE cliente (
-  id_cliente int(11) NOT NULL AUTO_INCREMENT,
-  nombre varchar(40) DEFAULT NULL,
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nombres varchar(40) DEFAULT NULL,
   email varchar(40) DEFAULT NULL,
   celular int(11) DEFAULT NULL,
-  documento int(11) DEFAULT NULL,
-  direccion varchar(40) DEFAULT NULL,
   contrasena varchar(40) DEFAULT NULL,
-  PRIMARY KEY (id_cliente)
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE administrador (
-  id_cliente int(11) NOT NULL AUTO_INCREMENT,
-  nombre varchar(40) DEFAULT NULL,
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nombres varchar(40) DEFAULT NULL,
   email varchar(40) DEFAULT NULL,
   celular int(11) DEFAULT NULL,
-  documento int(11) DEFAULT NULL,
-  direccion varchar(40) DEFAULT NULL,
   contrasena varchar(40) DEFAULT NULL,
-  PRIMARY KEY (id_cliente)
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE trabajador (
   id int(11) NOT NULL AUTO_INCREMENT,
-  identificacion varchar(20) DEFAULT NULL,
-  nombre varchar(50) DEFAULT NULL,
-  apellido varchar(50) DEFAULT NULL,
+  nombres varchar(50) DEFAULT NULL,
+  email varchar(40) DEFAULT NULL,
+  celular int(11) DEFAULT NULL,
+  contrasena varchar(50) DEFAULT NULL,
   direccion varchar(100) DEFAULT NULL,
-  telefono varchar(15) DEFAULT NULL,
   fecha_nacimiento date DEFAULT NULL,
+  labor varchar(50) DEFAULT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

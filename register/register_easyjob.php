@@ -2,25 +2,18 @@
 include_once("config_register.php");
 
 if (isset($_POST['Submit'])) {
+    $nombres = $_POST['nombres'];
     $email = $_POST['email'];
-    $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
     $celular = $_POST['celular'];
     $documento = $_POST['documento'];
     $direccion = $_POST['direccion'];
     $contrasena = $_POST['contrasena'];
-    $identificacion = $_POST['identificacion'];
-    $telefono = $_POST['telefono'];
-    $fecha_nacimiento = $_POST['fecha_nacimiento'];
     $tipo_usuario = $_POST['tipo_usuario']; // cliente o trabajador
 
     // Verificar si algún campo está vacío
-    if (empty($email) || empty($nombre) || empty($apellido) || empty($contrasena) || empty($direccion)) {
+    if (empty($email) || empty($nombre)  || empty($contrasena) || empty($direccion)) {
         if (empty($email)) {
             echo "<font color='red'>Campo: email está vacío.</font><br/>";
-        }
-        if (empty($nombre)) {
-            echo "<font color='red'>Campo: nombre está vacío.</font><br/>";
         }
         if (empty($apellido)) {
             echo "<font color='red'>Campo: apellido está vacío.</font><br/>";
@@ -39,10 +32,10 @@ if (isset($_POST['Submit'])) {
 
             // Inserción según el tipo de usuario
             if ($tipo_usuario === 'cliente') {
-                $sql = "INSERT INTO cliente (nombre, email, celular, documento, direccion, contrasena) 
-                        VALUES (:nombre, :email, :celular, :documento, :direccion, :contrasena)";
+                $sql = "INSERT INTO cliente (nombres, email, celular, documento, direccion, contrasena) 
+                        VALUES (:nombres, :email, :celular, :documento, :direccion, :contrasena)";
                 $query = $dbConn->prepare($sql);
-                $query->bindparam(':nombre', $nombre);
+                $query->bindparam(':nombres', $nombres);
                 $query->bindparam(':email', $email);
                 $query->bindparam(':celular', $celular);
                 $query->bindparam(':documento', $documento);
@@ -52,11 +45,10 @@ if (isset($_POST['Submit'])) {
                 $sql = "INSERT INTO trabajador (identificacion, nombre, apellido, direccion, telefono, fecha_nacimiento) 
                         VALUES (:identificacion, :nombre, :apellido, :direccion, :telefono, :fecha_nacimiento)";
                 $query = $dbConn->prepare($sql);
-                $query->bindparam(':identificacion', $identificacion);
                 $query->bindparam(':nombre', $nombre);
-                $query->bindparam(':apellido', $apellido);
+                $query->bindparam(':identificacion', $identificacion);
                 $query->bindparam(':direccion', $direccion);
-                $query->bindparam(':telefono', $telefono);
+                $query->bindparam(':telefono', $celular);
                 $query->bindparam(':fecha_nacimiento', $fecha_nacimiento);
             }
 
