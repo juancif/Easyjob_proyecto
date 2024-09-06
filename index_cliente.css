@@ -108,7 +108,27 @@ body {
     font-weight: bold; /* Hacer el texto en negrita */
 }
 
+.menu_lateral{
+    position: absolute;
+    width: 400px;
+    height: 200vh;
+    background: #1117;
+    backdrop-filter: blur(10px); /* Color de fondo del menú */
+    padding: 30px 20px; /* Espaciado interno del menú */
+    /* z-index: 10; */
+}
 
+.recuadro_menu{
+    /* position: relative; */
+    width: 40vh;
+    height: 20vh;
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: blur(10px);
+    border-radius: 40px; 
+    border: 2px solid black;
+    margin-bottom: 20px;
+    /* z-index: 20; */
+}
 .noticias{
     width: 140vh;
     height: 40vh;

@@ -29,6 +29,12 @@
             </li>
         </ul>
     </nav>
+    <div class="menu_lateral">
+        <div class="recuadro_menu"></div>
+        <div class="recuadro_menu"></div>
+        <div class="recuadro_menu"></div>
+        <div class="recuadro_menu"></div>
+    </div>
 <div class="noticias">
 </div>
 <div class="cuadro_perfil"></div>
