@@ -12,6 +12,18 @@ CREATE TABLE cliente (
   PRIMARY KEY (id_cliente)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE administrador (
+  id_cliente int(11) NOT NULL AUTO_INCREMENT,
+  nombre varchar(40) DEFAULT NULL,
+  email varchar(40) DEFAULT NULL,
+  celular int(11) DEFAULT NULL,
+  documento int(11) DEFAULT NULL,
+  direccion varchar(40) DEFAULT NULL,
+  contrasena varchar(40) DEFAULT NULL,
+  PRIMARY KEY (id_cliente)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 CREATE TABLE trabajador (
   id int(11) NOT NULL AUTO_INCREMENT,
   identificacion varchar(20) DEFAULT NULL,

@@ -1,4 +1,3 @@
-/* ... (estilos anteriores) ... */
 body {
     background-image: url(imagenes/fondo5_login.webp);
     background-size: cover;
@@ -109,4 +108,87 @@ body {
     font-weight: bold; /* Hacer el texto en negrita */
 }
 
+.menu_lateral{
+    position: absolute;
+    width: 400px;
+    height: 200vh;
+    background: #1117;
+    backdrop-filter: blur(10px); /* Color de fondo del menú */
+    padding: 30px 20px; /* Espaciado interno del menú */
+    /* z-index: 10; */
+}
 
+.recuadro_menu{
+    /* position: relative; */
+    width: 40vh;
+    height: 20vh;
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: blur(10px);
+    border-radius: 40px; 
+    border: 2px solid black;
+    margin-bottom: 20px;
+    /* z-index: 20; */
+}
+.noticias{
+    width: 140vh;
+    height: 40vh;
+    background-color: gray;
+    border: 1px solid black;
+    position: absolute;
+    margin-top: 10vb;
+    margin-left: 60vh;
+    border-radius: 20px;
+}
+
+.cuadro_perfil{
+    width: 40vh;
+    height: 40vh;
+
+    background-image: url(imagenes/imagen_perfil.png);
+    background-size: cover;
+    border: 1px solid black;
+    position: absolute;
+    margin-top: 60vb;
+    margin-left: 60vh;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+.cuadro_perfil2{
+    margin-left: 110vh;
+}
+
+.cuadro_perfil3{
+    margin-left: 160vh;
+}
+
+.cuadro_perfil4{
+    margin-left: 60vh;
+    margin-top: 110vh;
+}
+
+.cuadro_perfil5{
+    margin-left: 110vh;
+    margin-top: 110vh;
+}
+
+.cuadro_perfil6{
+    margin-left: 160vh;
+    margin-top: 110vh;
+}
+
+.cuadro_perfil7{
+    margin-left: 60vh;
+    margin-top: 160vh;
+    margin-bottom: 10vh;
+}
+
+.cuadro_perfil8{
+    margin-left: 110vh;
+    margin-top: 160vh;
+}
+
+.cuadro_perfil9{
+    margin-left: 160vh;
+    margin-top: 160vh;
+}
