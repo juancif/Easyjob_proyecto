@@ -6,7 +6,7 @@
     <title>Inicio Sesión Gateourmet</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;600&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../../../register/registro_exitoso/style_registro_exitoso.css">
+    <link rel="stylesheet" href="registro_exitoso.css">
 </head>
 <body>
 <header class="header">

@@ -110,7 +110,7 @@ body {
 
 .menu_lateral{
     position: absolute;
-    width: 400px;
+    width: 45vh;
     height: 200vh;
     background: #1117;
     backdrop-filter: blur(10px); /* Color de fondo del menú */

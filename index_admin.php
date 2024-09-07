@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easyjob</title>
-    <link rel="stylesheet" href="index_cliente.css">
+    <link rel="stylesheet" href="index_admin.css">
 </head>
 <body>
     <nav class="nav__principal">
@@ -16,7 +16,7 @@
                 <a href="http://localhost/GateGourmet/Crear_documento/crear.php" class="nav__link"><img src="imagenes/servicios.png" alt="Crear datetime" class="imgs__menu">Servicios</a>
             </li>
             <li class="nav__item">
-                <a href="http://localhost/GateGourmet/Gestor_usuarios/php/user/index_gestor.php" class="nav__link"><img src="imagenes/usuarios.png" alt="Gestor_usuarios" class="imgs__menu">Gestor usuarios</a>
+                <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/user/index_gestor.php" class="nav__link"><img src="imagenes/usuarios.png" alt="Gestor_usuarios" class="imgs__menu">Gestor usuarios</a>
             </li>
             <li class="nav__item">
                 <a href="http://localhost/GateGourmet/log_eventos/log_eventos.php" class="nav__link"><img src="imagenes/eventos.png" alt="log_eventos" class="imgs__menu">log de eventos</a>

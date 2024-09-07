@@ -17,32 +17,30 @@ $result = $dbConn->query("SELECT * FROM cliente ORDER BY id ASC");
             </li>
     </header>
     <a href="add_gestor.php" class="botones boton_adicionar">Adicionar usuario</a>
-    <a href="http://localhost/GateGourmet/Gestor_usuarios/php/Inactivos/index_inactivos.php" class="botones boton_inactivos">Ver inactivos</a>
-    <a href="http://localhost/GateGourmet/Gestor_usuarios/php/admin/index_gestor_admin.php" class="botones boton_volver">Ver administradores</a>
+    <!-- <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/Inactivos/index_inactivos.php" class="botones boton_inactivos">Ver inactivos</a>
+    <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/admin/index_gestor_admin.php" class="botones boton_volver">Ver administradores</a> -->
         <table class="tabla_principal">
         <th class="cuadro_titulo">Usuarios</th>
             <tr class="tabla_secundaria">
-                <th>NOMBRE</th>
+                <th>ID</th>
+                <th>NOMBRES</th>
                 <th>EMAIL</th>
                 <th>CELULAR</th>
-                <th>DOCUMENTO</th>
-                <th>DIRECCIÓN</th>
                 <th>CONTRASEÑA</th>
              <th>EDICIÓN</th>
             </tr>
             <?php
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['nombre']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['nombres']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['email']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['celular']) . "</td>";
-                echo "<td>" . str_repeat('*', strlen($row['documento']));
-                echo "<td>" . htmlspecialchars($row['direccion']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['contrasena']) . "</td>";
                 echo "<td class='acciones'>
-                        <a href='edit_gestor.php?nombre_usuario=" . htmlspecialchars($row['nombre_usuario']) . "'>Editar</a> | 
-                        <a href='desactivar_gestor.php?nombre_usuario=" . htmlspecialchars($row['nombre_usuario']) . "' 
-                           onclick=\"return confirm('¿Está seguro de desactivar este registro?')\">Desactivar</a>
+                        <a href='edit_gestor.php?id=" . htmlspecialchars($row['id']) . "'>Editar</a> | 
+                        <a href='delete_gestor.php?id=" . htmlspecialchars($row['id']) . "' 
+                           onclick=\"return confirm('¿Está seguro de eliminar este registro?')\">Eliminar</a>
                       </td>";
                 echo "</tr>";
             }

@@ -2,23 +2,17 @@
 include_once("config_gestor.php");
 
 if (isset($_POST['update'])) {
-    $correo = $_POST['correo'];
-    $nombres_apellidos = $_POST['nombres_apellidos'];
-    $nombre_usuario = $_POST['nombre_usuario'];
+    $nombres = $_POST['nombres'];
+    $email = $_POST['email'];
+    $celular = $_POST['celular'];
     $contrasena = $_POST['contrasena'];
-    $area = $_POST['area'];
-    $cargo = $_POST['cargo'];
-    $rol = $_POST['rol'];
 
     // Validación de campos
     $errors = [];
-    if (empty($correo)) $errors[] = "Campo: correo está vacío.";
-    if (empty($nombres_apellidos)) $errors[] = "Campo: nombres_apellidos está vacío.";
-    if (empty($nombre_usuario)) $errors[] = "Campo: nombre_usuario está vacío.";
+    if (empty($nombres)) $errors[] = "Campo: nombres está vacío.";
+    if (empty($email)) $errors[] = "Campo: email está vacío.";
+    if (empty($celular)) $errors[] = "Campo: celular está vacío.";
     if (empty($contrasena)) $errors[] = "Campo: contrasena está vacío.";
-    if (empty($area)) $errors[] = "Campo: area está vacío.";
-    if (empty($cargo)) $errors[] = "Campo: cargo está vacío.";
-    if (empty($rol)) $errors[] = "Campo: rol está vacío.";
     
     if (!empty($errors)) {
         foreach ($errors as $error) {
@@ -26,40 +20,40 @@ if (isset($_POST['update'])) {
         }
     } else {
         // Verificar el rol actual
-        $sql_check_rol = "SELECT rol FROM usuarios WHERE nombre_usuario = :nombre_usuario";
+        $sql_check_rol = "SELECT rol FROM cliente WHERE id = :id";
         $query_check = $dbConn->prepare($sql_check_rol);
-        $query_check->execute([':nombre_usuario' => $nombre_usuario]);
+        $query_check->execute([':id' => $id]);
         $row_check = $query_check->fetch(PDO::FETCH_ASSOC);
         $current_rol = $row_check['rol'];
 
         // Si el rol ha cambiado a Administrador
         if ($rol === 'Administrador') {
             // Insertar en la tabla administradores
-            $sql_insert_admin = "INSERT INTO administradores (correo, nombres_apellidos, nombre_usuario, contrasena, area, cargo, rol)
-                                 VALUES (:correo, :nombres_apellidos, :nombre_usuario, :contrasena, :area, :cargo, :rol)";
+            $sql_insert_admin = "INSERT INTO administradores (correo, nombres_apellidos, id, contrasena, area, cargo, rol)
+                                 VALUES (:correo, :nombres_apellidos, :id, :contrasena, :area, :cargo, :rol)";
             $query_insert = $dbConn->prepare($sql_insert_admin);
             $query_insert->bindParam(':correo', $correo);
             $query_insert->bindParam(':nombres_apellidos', $nombres_apellidos);
-            $query_insert->bindParam(':nombre_usuario', $nombre_usuario);
+            $query_insert->bindParam(':id', $id);
             $query_insert->bindParam(':contrasena', $contrasena);
             $query_insert->bindParam(':area', $area);
             $query_insert->bindParam(':cargo', $cargo);
             $query_insert->bindParam(':rol', $rol);
             $query_insert->execute();
 
-            // Eliminar del usuario
-            $sql_delete_user = "DELETE FROM usuarios WHERE nombre_usuario = :nombre_usuario";
+            // Eliminar del cliente
+            $sql_delete_user = "DELETE FROM cliente WHERE id = :id";
             $query_delete = $dbConn->prepare($sql_delete_user);
-            $query_delete->execute([':nombre_usuario' => $nombre_usuario]);
+            $query_delete->execute([':id' => $id]);
         } else {
-            // Actualizar el usuario sin mover entre tablas
-            $sql_update = "UPDATE usuarios SET correo=:correo, nombres_apellidos=:nombres_apellidos, contrasena=:contrasena,  
+            // Actualizar el cliente sin mover entre tablas
+            $sql_update = "UPDATE cliente SET correo=:correo, nombres_apellidos=:nombres_apellidos, contrasena=:contrasena,  
                            area=:area, cargo=:cargo, rol=:rol
-                           WHERE nombre_usuario=:nombre_usuario";
+                           WHERE id=:id";
             $query_update = $dbConn->prepare($sql_update);
             $query_update->bindParam(':correo', $correo);
             $query_update->bindParam(':nombres_apellidos', $nombres_apellidos);
-            $query_update->bindParam(':nombre_usuario', $nombre_usuario);
+            $query_update->bindParam(':id', $id);
             $query_update->bindParam(':contrasena', $contrasena);
             $query_update->bindParam(':area', $area);
             $query_update->bindParam(':cargo', $cargo);
@@ -72,11 +66,11 @@ if (isset($_POST['update'])) {
     }
 }
 
-if (isset($_GET['nombre_usuario'])) {
-    $nombre_usuario = $_GET['nombre_usuario'];
-    $sql = "SELECT * FROM usuarios WHERE nombre_usuario=:nombre_usuario";
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM cliente WHERE id=:id";
     $query = $dbConn->prepare($sql);
-    $query->execute([':nombre_usuario' => $nombre_usuario]);
+    $query->execute([':id' => $id]);
     $row = $query->fetch(PDO::FETCH_ASSOC);
     $correo = $row['correo'];
     $nombres_apellidos = $row['nombres_apellidos'];
@@ -101,7 +95,7 @@ if (isset($_GET['nombre_usuario'])) {
     <main class="main-content">
         <div class="register-container">
             <div class="register-box">
-                <h2>Edición de Usuarios</h2>
+                <h2>Edición de cliente</h2>
                 <form method="post" action="edit_gestor.php">
                 <div class="input-group tooltip">
                         <label for="correo">Correo Electrónico</label>
@@ -113,8 +107,8 @@ if (isset($_GET['nombre_usuario'])) {
                         <input type="text" id="nombres_apellidos" name="nombres_apellidos" required value="<?php echo htmlspecialchars($nombres_apellidos, ENT_QUOTES); ?>">
                     </div>
                     <div class="input-group">
-                        <label for="nombre_usuario">Nombre de Usuario</label>
-                        <input type="text" id="nombre_usuario" name="nombre_usuario" required value="<?php echo htmlspecialchars($nombre_usuario, ENT_QUOTES); ?>">
+                        <label for="id">Nombre de cliente</label>
+                        <input type="text" id="id" name="id" required value="<?php echo htmlspecialchars($id, ENT_QUOTES); ?>">
                     </div>
                     <div class="input-group tooltip">
                         <label for="contrasena">Contraseña</label>
