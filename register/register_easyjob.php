@@ -40,6 +40,8 @@ if (isset($_POST['Submit'])) {
         } elseif ($rol === 'admin') {
             $sql = "INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) 
                     VALUES (:nombres_apellidos, :email, :celular, :contrasena)";
+                                $query = $dbConn->prepare($sql);
+                                $query->bindparam(':labor', $labor);
                     } elseif ($rol === 'usuario') {
                         $sql = "INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) 
                                 VALUES (:nombres_apellidos, :email, :celular, :contrasena)";
@@ -58,7 +60,7 @@ if (isset($_POST['Submit'])) {
         // Ejecutar la consulta
         if ($query->execute()) {
             // Redirigir a la página de registro exitoso
-            header("Location: http://localhost/Easyjob_proyecto/register/registro_exitoso.php");
+            header("Location: registro_exitoso.php");
             exit();
         } else {
             echo "<font color='red'>Error al registrar el usuario.</font><br/>";
@@ -115,7 +117,7 @@ if (isset($_POST['Submit'])) {
                         <label for="rol">Rol</label>
                         <select id="rol" name="rol" required onchange="toggleLaborField()">
                             <option value="">Seleccionar rol</option>
-                            <option value="admin">admin</option>
+                            <option value="admin">administrador</option>
                             <option value="usuario">Usuario</option>
                             <option value="trabajador">Trabajador</option>
                         </select>
