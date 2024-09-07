@@ -15,102 +15,71 @@ if ($connect->connect_error) {
 
 // Verificar si se ha enviado el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['id']) && isset($_POST['contrasena'])) {
-        $id = $_POST['id'];
+    if (isset($_POST['nombres_apellidos']) && isset($_POST['contrasena'])) {
+        $nombres_apellidos = $_POST['nombres_apellidos'];
         $contrasena = $_POST['contrasena'];
 
-        // Verificar en la tabla cliente
-        $stmt = $connect->prepare("SELECT * FROM cliente WHERE id = ?");
-        $stmt->bind_param("s", $id);
+        // Buscar en la tabla de usuario
+        $stmt = $connect->prepare("SELECT * FROM usuario WHERE nombres_apellidos = ?");
+        $stmt->bind_param("s", $nombres_apellidos);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            $cliente = $result->fetch_assoc();
-            $hash_contrasena = $cliente['contrasena'];
+            $usuario = $result->fetch_assoc();
 
-            if (password_verify($contrasena, $hash_contrasena)) {
-                $_SESSION['id'] = $id;
-                $_SESSION['user_type'] = 'cliente';
-                $nombres = $cliente['nombres'];
+            // Verifica si las contraseñas están hasheadas
+            $hash_contrasena = $usuario['contrasena'];
 
                 // Registrar el inicio de sesión en la tabla de movimientos
-                $sql = "INSERT INTO movimientos (id, accion, fecha) VALUES (?, 'Inicio de sesión', NOW())";
+                $sql = "INSERT INTO movimientos (nombres_apellidos, accion, fecha) VALUES (?, 'Inicio de sesión', NOW())";
                 $stmt = $connect->prepare($sql);
-                $stmt->bind_param("s", $id);
+                $stmt->bind_param("s", $nombres_apellidos);
                 $stmt->execute();
 
-                // Redirigir al dashboard de cliente
-                header("Location: http://localhost/Easyjob_proyecto/index_cliente.php");
+                // Guardar el área en la sesión
+                $_SESSION['area'] = $area;
+                $_SESSION['nombres_apellidos'] = $nombres_apellidos;
+
+                // Redirigir al dashboard con el área del usuario
+                header("Location: http://localhost/Easyjob_proyecto/index_usuario.php");
                 exit();
             } else {
                 echo "Nombre de usuario o contraseña incorrectos.";
             }
         } else {
-            // Verificar en la tabla trabajador
-            $stmt = $connect->prepare("SELECT * FROM trabajador WHERE id = ?");
-            $stmt->bind_param("s", $id);
+            // Verificar en la tabla de admin
+            $stmt = $connect->prepare("SELECT * FROM admin WHERE nombres_apellidos = ?");
+            $stmt->bind_param("s", $nombres_apellidos);
             $stmt->execute();
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                $trabajador = $result->fetch_assoc();
-                $hash_contrasena = $trabajador['contrasena'];
+                $admin = $result->fetch_assoc();
+                $hash_contrasena = $admin['contrasena'];
 
-                if (password_verify($contrasena, $hash_contrasena)) {
-                    $_SESSION['id'] = $id;
-                    $_SESSION['user_type'] = 'trabajador';
-                    $nombres = $trabajador['nombres'];
+                if (password_verify($contrasena, $hash_contrasena) || $contrasena === $hash_contrasena) {
+                    $area = $admin['area'];
 
                     // Registrar el inicio de sesión en la tabla de movimientos
-                    $sql = "INSERT INTO movimientos (id, accion, fecha) VALUES (?, 'Inicio de sesión', NOW())";
+                    $sql = "INSERT INTO movimientos (nombres_apellidos, accion, fecha) VALUES (?, 'Inicio de sesión como administrador', NOW())";
                     $stmt = $connect->prepare($sql);
-                    $stmt->bind_param("s", $id);
+                    $stmt->bind_param("s", $nombres_apellidos);
                     $stmt->execute();
 
-                    // Redirigir al dashboard de trabajador
-                    header("Location: http://localhost/Easyjob_proyecto/index_trabajador.php");
+
+                    header("Location: http://localhost/Easyjob_proyecto/index_admin.php");
                     exit();
                 } else {
                     echo "Nombre de usuario o contraseña incorrectos.";
                 }
             } else {
-                // Verificar en la tabla administrador
-                $stmt = $connect->prepare("SELECT * FROM administrador WHERE id = ?");
-                $stmt->bind_param("s", $id);
-                $stmt->execute();
-                $result = $stmt->get_result();
-
-                if ($result->num_rows > 0) {
-                    $administrador = $result->fetch_assoc();
-                    $hash_contrasena = $administrador['contrasena'];
-
-                    if (password_verify($contrasena, $hash_contrasena)) {
-                        $_SESSION['id'] = $id;
-                        $_SESSION['user_type'] = 'administrador';
-                        $nombres = $administrador['nombres'];
-
-                        // Registrar el inicio de sesión en la tabla de movimientos
-                        $sql = "INSERT INTO movimientos (id, accion, fecha) VALUES (?, 'Inicio de sesión', NOW())";
-                        $stmt = $connect->prepare($sql);
-                        $stmt->bind_param("s", $id);
-                        $stmt->execute();
-
-                        // Redirigir al dashboard de administrador
-                        header("Location: http://localhost/Easyjob_proyecto/index_administrador.php");
-                        exit();
-                    } else {
-                        echo "Nombre de usuario o contraseña incorrectos.";
-                    }
-                } else {
-                    echo "Nombre de usuario o contraseña incorrectos.";
-                }
+                echo "Nombre de usuario o contraseña incorrectos.";
             }
         }
     } else {
         echo "Por favor, ingrese nombre de usuario y contraseña.";
     }
-}
 
 // Cerrar la conexión
 $connect->close();
@@ -139,10 +108,10 @@ $connect->close();
                 <h2>EASYJOB</h2>
                 <form method="post" action="">
                     <div class="input-group">
-                        <label for="id">Nombre de usuario</label>
+                        <label for="nombres_apellidos">Nombres y apellidos</label>
                         <div class="input-icon">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="id" name="id" required placeholder="Nombre de usuario" value="<?php if(isset($_POST['id'])) echo htmlspecialchars($_POST['id']); ?>"/>
+                            <input type="text" id="nombres_apellidos" name="nombres_apellidos" required placeholder="Nombres y apellidos registrados">
                         </div>
                     </div>
                     <div class="input-group">

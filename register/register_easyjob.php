@@ -37,7 +37,7 @@ if (isset($_POST['Submit'])) {
                     VALUES (:nombres_apellidos, :email, :celular, :contrasena, :labor)";
             $query = $dbConn->prepare($sql);
             $query->bindparam(':labor', $labor);
-        } elseif ($rol === 'administrador') {
+        } elseif ($rol === 'admin') {
             $sql = "INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) 
                     VALUES (:nombres_apellidos, :email, :celular, :contrasena)";
                     } elseif ($rol === 'usuario') {
@@ -115,7 +115,7 @@ if (isset($_POST['Submit'])) {
                         <label for="rol">Rol</label>
                         <select id="rol" name="rol" required onchange="toggleLaborField()">
                             <option value="">Seleccionar rol</option>
-                            <option value="administrador">Administrador</option>
+                            <option value="admin">admin</option>
                             <option value="usuario">Usuario</option>
                             <option value="trabajador">Trabajador</option>
                         </select>
