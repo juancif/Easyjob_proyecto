@@ -1,0 +1,7 @@
+<phpunit bootstrap="config_gestor.php">
+    <testsuites>
+        <testsuite name="EASYJOB Tests">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

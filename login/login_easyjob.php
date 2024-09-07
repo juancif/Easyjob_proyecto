@@ -63,17 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 if (password_verify($contrasena, $hash_contrasena) || $contrasena === $hash_contrasena) {
                     $area = $admin['area'];
-
-                    // Registrar el inicio de sesión en la tabla de movimientos
-                    $sql = "INSERT INTO movimientos (id, accion, fecha) VALUES (?, 'Inicio de sesión como administrador', NOW())";
-                    $stmt = $connect->prepare($sql);
-                    $stmt->bind_param("s", $id);
-                    $stmt->execute();
-
-                    // Guardar el área en la sesión
-                    $_SESSION['area'] = $area;
-                    $_SESSION['id'] = $id;
-
                     // Redirigir al dashboard con el área del administrador
                     header("Location: http://localhost/GateGourmet/Index/index_admin.html");
                     exit();
