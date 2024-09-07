@@ -2,15 +2,17 @@
 include_once("config_register.php");
 
 if (isset($_POST['Submit'])) {
-    $nombres = $_POST['nombres'];
+    $nombres_apellidos = $_POST['nombres_apellidos'];
     $email = $_POST['email'];
     $celular = $_POST['celular'];
     $contrasena = $_POST['contrasena'];
+    $rol = $_POST['rol'];
+    $labor = isset($_POST['labor']) ? $_POST['labor'] : null;
 
     // Verificar si algún campo está vacío
-    if (empty($nombres) || empty($email) || empty($celular) || empty($contrasena)) {
-        if (empty($nombres)) {
-            echo "<font color='red'>Campo: nombres está vacío.</font><br/>";
+    if (empty($nombres_apellidos) || empty($email) || empty($celular) || empty($contrasena) || empty($rol)) {
+        if (empty($nombres_apellidos)) {
+            echo "<font color='red'>Campo: nombres_apellidos está vacío.</font><br/>";
         }
         if (empty($email)) {
             echo "<font color='red'>Campo: email está vacío.</font><br/>";
@@ -21,18 +23,34 @@ if (isset($_POST['Submit'])) {
         if (empty($contrasena)) {
             echo "<font color='red'>Campo: contraseña está vacío.</font><br/>";
         }
+        if (empty($rol)) {
+            echo "<font color='red'>Campo: rol está vacío.</font><br/>";
+        }
         echo "<br/><a href='javascript:self.history.back();'>Volver</a>";
     } else {
         // Hashear la contraseña para mayor seguridad
         $hashed_password = password_hash($contrasena, PASSWORD_DEFAULT);
 
-        // Consulta SQL para insertar los datos en la tabla cliente
-        $sql = "INSERT INTO cliente (nombres, email, celular, contrasena) 
-                VALUES (:nombres, :email, :celular, :contrasena)";
-        $query = $dbConn->prepare($sql);
+        // Dependiendo del rol, insertar en la tabla correspondiente
+        if ($rol === 'trabajador') {
+            $sql = "INSERT INTO trabajador (nombres_apellidos, email, celular, contrasena, labor) 
+                    VALUES (:nombres_apellidos, :email, :celular, :contrasena, :labor)";
+            $query = $dbConn->prepare($sql);
+            $query->bindparam(':labor', $labor);
+        } elseif ($rol === 'administrador') {
+            $sql = "INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) 
+                    VALUES (:nombres_apellidos, :email, :celular, :contrasena)";
+                    } elseif ($rol === 'usuario') {
+                        $sql = "INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) 
+                                VALUES (:nombres_apellidos, :email, :celular, :contrasena)";
+            $query = $dbConn->prepare($sql);
+        } else {
+            echo "<font color='red'>Rol no válido.</font><br/>";
+            exit();
+        }
 
         // Vincular los parámetros con los valores ingresados
-        $query->bindparam(':nombres', $nombres);
+        $query->bindparam(':nombres_apellidos', $nombres_apellidos);
         $query->bindparam(':email', $email);
         $query->bindparam(':celular', $celular);
         $query->bindparam(':contrasena', $hashed_password);
@@ -54,8 +72,19 @@ if (isset($_POST['Submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registro de cliente o trabajador</title>
+    <title>Registro de usuario o trabajador</title>
     <link rel="stylesheet" href="register_easyjob.css">
+    <script>
+        function toggleLaborField() {
+            var rol = document.getElementById('rol').value;
+            var laborField = document.getElementById('labor-field');
+            if (rol === 'trabajador') {
+                laborField.style.display = 'block';
+            } else {
+                laborField.style.display = 'none';
+            }
+        }
+    </script>
 </head>
 <body>
     <header class="header">
@@ -63,14 +92,14 @@ if (isset($_POST['Submit'])) {
     <main class="main-content">
         <div class="register-container">
             <div class="register-box">
-                <h2>Registro de cliente o trabajador</h2>
+                <h2>Registro de usuario o trabajador</h2>
                 <form method="post" action="">
                     <div class="input-group">
-                        <label for="nombres">Nombres y Apellidos</label>
-                        <input type="text" id="nombres" name="nombres" required>
+                        <label for="nombres_apellidos">Nombres y Apellidos</label>
+                        <input type="text" id="nombres_apellidos" name="nombres_apellidos" required>
                     </div>
                     <div class="input-group">
-                        <label for="email">Correo electronico</label>
+                        <label for="email">Correo Electrónico</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="input-group">
@@ -81,6 +110,19 @@ if (isset($_POST['Submit'])) {
                         <label for="contrasena">Contraseña</label>
                         <input type="password" id="contrasena" name="contrasena" required>
                         <span class="tooltiptext">Recuerda que la contraseña debe tener mínimo 12 caracteres, un carácter especial y una mayúscula.</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="rol">Rol</label>
+                        <select id="rol" name="rol" required onchange="toggleLaborField()">
+                            <option value="">Seleccionar rol</option>
+                            <option value="administrador">Administrador</option>
+                            <option value="usuario">Usuario</option>
+                            <option value="trabajador">Trabajador</option>
+                        </select>
+                    </div>
+                    <div class="input-group" id="labor-field" style="display: none;">
+                        <label for="labor">Labor</label>
+                        <input type="text" id="labor" name="labor">
                     </div>
                     <div class="buttons">
                         <input type="submit" name="Submit" value="Registrarse" class="Registrarse">

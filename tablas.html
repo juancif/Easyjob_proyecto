@@ -1,23 +1,25 @@
 Create database easyjob;
 use easyjob;
 
-CREATE TABLE cliente (
+CREATE TABLE usuario (
   id int(11) NOT NULL AUTO_INCREMENT,
-  nombres varchar(40) DEFAULT NULL,
+  nombres_apellidos varchar(40) DEFAULT NULL,
   email varchar(40) DEFAULT NULL,
   celular int(11) DEFAULT NULL,
   contrasena varchar(40) DEFAULT NULL,
+  rol enum('usuario','admin','trabajador') NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
-CREATE TABLE administrador (
+CREATE TABLE admin (
   id int(11) NOT NULL AUTO_INCREMENT,
-  nombres varchar(40) DEFAULT NULL,
+  nombres_apellidos varchar(40) DEFAULT NULL,
   email varchar(40) DEFAULT NULL,
   celular int(11) DEFAULT NULL,
   contrasena varchar(40) DEFAULT NULL,
+  rol enum('usuario','admin','trabajador') NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 
 CREATE TABLE trabajador (
@@ -26,13 +28,18 @@ CREATE TABLE trabajador (
   email varchar(40) DEFAULT NULL,
   celular int(11) DEFAULT NULL,
   contrasena varchar(50) DEFAULT NULL,
-  direccion varchar(100) DEFAULT NULL,
-  fecha_nacimiento date DEFAULT NULL,
   labor varchar(50) DEFAULT NULL,
+  rol enum('usuario','admin','trabajador') NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
-
+CREATE TABLE movimientos (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    nombre_usuario VARCHAR(255) NOT NULL,
+    accion VARCHAR(255) NOT NULL,
+    fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
 
 CREATE TABLE productos (
   id_producto int(11) NOT NULL AUTO_INCREMENT,
