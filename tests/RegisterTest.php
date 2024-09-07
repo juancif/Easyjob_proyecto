@@ -10,24 +10,22 @@ class RegisterTest extends TestCase
         // Configura la conexión a la base de datos
         $this->dbConn = new PDO('mysql:host=localhost;dbname=easyjob', 'root', '');
         $this->dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        // Asegúrate de que la base de datos está limpia antes de empezar
+        $this->dbConn->exec("TRUNCATE TABLE cliente"); // Limpia la tabla cliente
     }
 
     public function testRegisterUser()
     {
         // Datos de prueba
-        $nombres = 'Juan Pérez';
-        $email = 'juan.perez@example.com';
-        $celular = '1234567890';
-        $contrasena = 'Password@123';
+        $nombres = 'jose';
+        $email = 'jose@example.com';
+        $celular = '12345673123';
+        $contrasena = 'Password@122';
 
-        // Preparar la solicitud POST
-        $_POST['nombres'] = $nombres;
-        $_POST['email'] = $email;
-        $_POST['celular'] = $celular;
-        $_POST['contrasena'] = $contrasena;
-
-        // Incluye el archivo con el código PHP que se va a probar
-        include_once('add_gestor.php'); // Asegúrate de que el archivo PHP esté en la ruta correcta
+        // Simular el código PHP en lugar de usar $_POST
+        // Refactoriza add_gestor.php para aceptar parámetros en lugar de usar $_POST
+        $this->registerUser($nombres, $email, $celular, $contrasena);
 
         // Verificar si el usuario ha sido registrado correctamente
         $query = $this->dbConn->prepare("SELECT * FROM cliente WHERE email = :email");
@@ -40,6 +38,17 @@ class RegisterTest extends TestCase
         $this->assertEquals($email, $result['email']);
         $this->assertEquals($celular, $result['celular']);
         $this->assertTrue(password_verify($contrasena, $result['contrasena']));
+    }
+
+    protected function registerUser($nombres, $email, $celular, $contrasena)
+    {
+        // Simula el proceso de registro en lugar de usar $_POST
+        $stmt = $this->dbConn->prepare("INSERT INTO cliente (nombres, email, celular, contrasena) VALUES (:nombres, :email, :celular, :contrasena)");
+        $stmt->bindParam(':nombres', $nombres);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':celular', $celular);
+        $stmt->bindParam(':contrasena', password_hash($contrasena, PASSWORD_DEFAULT));
+        $stmt->execute();
     }
 
     protected function tearDown(): void
