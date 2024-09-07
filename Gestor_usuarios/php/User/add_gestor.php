@@ -6,8 +6,9 @@ if (isset($_POST['Submit'])) {
     $email = $_POST['email'];
     $celular = $_POST['celular'];
     $contrasena = $_POST['contrasena'];
+    
     // Verificar si algún campo está vacío
-    if (empty($nombres) ||  empty($email) || empty($celular) || empty($contrasena)) {
+    if (empty($nombres) || empty($email) || empty($celular) || empty($contrasena)) {
         if (empty($nombres)) {
             echo "<font color='red'>Campo: nombres está vacío.</font><br/>";
         }
@@ -18,53 +19,48 @@ if (isset($_POST['Submit'])) {
             echo "<font color='red'>Campo: celular está vacío.</font><br/>";
         }
         if (empty($contrasena)) {
-            echo "<font color='red'>Campo: contrasena está vacío.</font><br/>";
+            echo "<font color='red'>Campo: contraseña está vacío.</font><br/>";
         }
         echo "<br/><a href='javascript:self.history.back();'>Volver</a>";
     } else {
         try {
             // Iniciar la transacción
             $dbConn->beginTransaction();
+            
+            // Hash de la contraseña antes de almacenarla
+            $contrasenaHash = password_hash($contrasena, PASSWORD_BCRYPT);
         
-            // Verificar si el id ya existe en la base de datos
-            $checkDocSql = "SELECT COUNT(*) FROM cliente WHERE id = :id";
-            $checkDocQuery = $dbConn->prepare($checkDocSql);
-            $checkDocQuery->bindparam(':id', $id);
-            $checkDocQuery->execute();
-            $count = $checkDocQuery->fetchColumn();
-        
-            // Verificar el campo cargo y definir la tabla correspondiente
-        {
-                $sql = "INSERT INTO cliente (nombres, email,celular, contrasena) 
-                        VALUES (:nombres, :email, :celular, :contrasena)";
-            } 
-        
+            // Insertar el usuario en la tabla cliente
+            $sql = "INSERT INTO cliente (nombres, email, celular, contrasena) 
+                    VALUES (:nombres, :email, :celular, :contrasena)";
             $query = $dbConn->prepare($sql);
             $query->bindparam(':nombres', $nombres);
             $query->bindparam(':email', $email);
             $query->bindparam(':celular', $celular);
-            $query->bindparam(':contrasena', $contrasena); // Hash de la contraseña
+            $query->bindparam(':contrasena', $contrasenaHash); // Usar la contraseña con hash
             $query->execute();
         
-
+            // Cometer la transacción
+            $dbConn->commit();
 
             if ($query->rowCount() > 0) {
-                // Redirigir a la página deseada después del registro exitoso
+                // Redirigir a la página de éxito después del registro exitoso
                 header("Location: registro_exitoso.php");
                 exit();
             } else {
-                echo "<font color='red'>Error al registrar el usuario o administrador.</font><br/>";
+                echo "<font color='red'>Error al registrar el usuario.</font><br/>";
             }
         } catch (Exception $e) {
             // Revertir los cambios si ocurre un error
             if ($dbConn->inTransaction()) {
                 $dbConn->rollBack();
             }
-            echo "<font color='red', font-size='30'>Error: " . $e->getMessage() . "</font><br/>";
+            echo "<font color='red'>Error: " . $e->getMessage() . "</font><br/>";
         }
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -113,18 +109,6 @@ if (isset($_POST['Submit'])) {
     </main>
     <footer class="footer">
         <p><a href="#">Ayuda</a> | <a href="#">Términos de servicio</a></p>
-        <script>
-            document.querySelector('form').addEventListener('submit', function(event) {
-                var emailField = document.getElementById('id');
-                var emailValue = emailField.value;
-
-                // Verificar si el id electrónico tiene el dominio específico
-                if (!emailValue.endsWith('@gategroup.com')) {
-                    alert('El id electrónico debe tener el dominio "@gategroup.com".');
-                    event.preventDefault(); // Evita el envío del formulario
-                }
-            });
-        </script>
         <script src="/script_prueba/script.js"></script>
     </footer>
 </body>

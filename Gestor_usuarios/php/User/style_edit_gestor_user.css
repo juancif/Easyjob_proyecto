@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: url('../../Imagenes/fondogg3.webp') no-repeat center center fixed;
+    background: url('../../../imagenes/fondo5_login.webp') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@ body {
 .header {
     background: #1117;
     backdrop-filter: blur(10px);
-    padding: 20px 40px;
+    padding: 40px 40px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(143, 187, 138, 0.1);
 }
@@ -185,6 +185,7 @@ input[type="submit"]:active, .button:active {
     padding: 10px;
     color: #fff;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 15vh;
 }
 .footer a {
     color: #fff;

@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
         $user = $stmtSelect->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            // Eliminar de la tabla administradores
+            // Eliminar de la tabla cliente
             $sqlDelete = "DELETE FROM cliente WHERE id = :id";
             $stmtDelete = $dbConn->prepare($sqlDelete);
             $stmtDelete->bindParam(':id', $id);
@@ -25,9 +25,8 @@ if (isset($_GET['id'])) {
             // Cometer transacción
             $dbConn->commit();
 
-            // Redirigir o mostrar un mensaje de éxito
-            header("Location: http://localhost/GateGourmet/Gestor_usuarios/User/delete_gestor.php/?msg=Usuario eliminado correctamente");
-            exit();
+            // Mostrar mensaje de éxito sin redirección
+            header("Location: index_gestor.php?msg=Usuario eliminado correctamente");
         } else {
             throw new Exception("Usuario no encontrado");
         }
