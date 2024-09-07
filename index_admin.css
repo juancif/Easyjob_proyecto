@@ -1,0 +1,194 @@
+body {
+    background-image: url(imagenes/fondo5_login.webp);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Fuente más profesional */
+}
+
+
+
+.imgs__menu{
+    width: 40px;
+    height: 40px;
+    padding-right:5px;
+    padding-left:0px;
+}
+
+.imgs__buscar{
+    margin-left: -40px;
+    margin-top: -4vh;
+    width: 30px;
+    height: 30px;
+    padding-right:5px;
+    padding-left:0px;
+    position: absolute;
+}
+
+/* Imagen del usuario */
+.img__usuario {
+    width: 70px; /* Ajustar el tamaño de la imagen del usuario */
+    height: 70px;
+    margin-top: 0px;
+    margin-left: -180px;
+    padding-right: 20px;
+}
+
+.img__usuario:hover{
+    padding-left: 5px;
+}
+
+/* Contenedor del menú */
+.nav__principal {
+    background: #1117;
+    backdrop-filter: blur(10px); /* Color de fondo del menú */
+    padding: 30px 20px; /* Espaciado interno del menú */
+}
+
+/* Lista del menú */
+.nav__list {
+    list-style: none; /* Quitar puntos de lista */
+    padding: 0; /* Quitar padding de la lista */
+    margin: 0; /* Quitar margin de la lista */
+    display: flex; /* Usar flexbox para alinear horizontalmente */
+    flex-wrap: wrap; /* Permitir que los elementos se ajusten a múltiples líneas si es necesario */
+}
+
+/* Elemento del menú */
+.nav__item {
+    margin: 0 40px; /* Margen horizontal entre elementos del menú */
+    font-size: 25px;
+}
+
+.nav__buscar{
+    margin-top: 1vb;
+    margin-left: 10vb;
+}
+/* Enlace del menú */
+.nav__link {
+    text-decoration: none; /* Quitar subrayado */
+    color:white; /* Color del texto */
+    display: flex; /* Usar flexbox para alinear imagen y texto */
+    align-items: center; /* Centrar verticalmente */
+    padding: 8px 12px; /* Padding interno para el enlace */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+.nav__link__buscar{
+    width: 300px;
+    height: 20px;
+}
+/* Hover del enlace del menú */
+.nav__link:hover {
+    background-color: #303030; /* Color de fondo al hacer hover */
+}
+
+/* Estilo para cerrar sesión */
+.nav__item__user {
+    margin-left: auto; /* Alinear a la derecha */
+}
+
+.cerrar__sesion__link {
+    display: flex; /* Usar flexbox para alinear imagen y texto */
+    align-items: center; /* Centrar verticalmente */
+    text-decoration: none; /* Quitar subrayado */
+    color: #ffffff;/* Color del texto */
+    font-size: 25px; 
+    margin-top: -20px;
+    position:absolute;
+}
+
+.cerrar__sesion__link:hover{
+    padding-left: 5px;
+}
+
+/* Botón de cerrar sesión */
+.cerrar__sesion {
+    font-weight: bold; /* Hacer el texto en negrita */
+}
+
+.menu_lateral{
+    position: absolute;
+    width: 45vh;
+    height: 200vh;
+    background: #1117;
+    backdrop-filter: blur(10px); /* Color de fondo del menú */
+    padding: 30px 20px; /* Espaciado interno del menú */
+    /* z-index: 10; */
+}
+
+.recuadro_menu{
+    /* position: relative; */
+    width: 40vh;
+    height: 20vh;
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: blur(10px);
+    border-radius: 40px; 
+    border: 2px solid black;
+    margin-bottom: 20px;
+    /* z-index: 20; */
+}
+.noticias{
+    width: 140vh;
+    height: 40vh;
+    background-color: gray;
+    border: 1px solid black;
+    position: absolute;
+    margin-top: 10vb;
+    margin-left: 60vh;
+    border-radius: 20px;
+}
+
+.cuadro_perfil{
+    width: 40vh;
+    height: 40vh;
+
+    background-image: url(imagenes/imagen_perfil.png);
+    background-size: cover;
+    border: 1px solid black;
+    position: absolute;
+    margin-top: 60vb;
+    margin-left: 60vh;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+.cuadro_perfil2{
+    margin-left: 110vh;
+}
+
+.cuadro_perfil3{
+    margin-left: 160vh;
+}
+
+.cuadro_perfil4{
+    margin-left: 60vh;
+    margin-top: 110vh;
+}
+
+.cuadro_perfil5{
+    margin-left: 110vh;
+    margin-top: 110vh;
+}
+
+.cuadro_perfil6{
+    margin-left: 160vh;
+    margin-top: 110vh;
+}
+
+.cuadro_perfil7{
+    margin-left: 60vh;
+    margin-top: 160vh;
+    margin-bottom: 10vh;
+}
+
+.cuadro_perfil8{
+    margin-left: 110vh;
+    margin-top: 160vh;
+}
+
+.cuadro_perfil9{
+    margin-left: 160vh;
+    margin-top: 160vh;
+}

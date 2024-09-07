@@ -1,0 +1,10 @@
+<!-- Añadir al final del archivo dashboard_trabajador.html -->
+<script>
+document.querySelector('form').addEventListener('submit', function(event) {
+    var experiencia = document.querySelector('input[name="experiencia"]').value;
+    if (experiencia < 0) {
+        alert('Los años de experiencia no pueden ser negativos.');
+        event.preventDefault();
+    }
+});
+</script>

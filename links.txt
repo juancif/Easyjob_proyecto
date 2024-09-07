@@ -1,0 +1,11 @@
+http://localhost/Easyjob_proyecto/login/login_easyjob.php
+http://localhost/Easyjob_proyecto/index_admin.php
+http://localhost/Easyjob_proyecto/index_cliente.php
+http://localhost/Easyjob_proyecto/index_trabajador.php
+http://localhost/Easyjob_proyecto/register/register_easyjob.php
+http://localhost/Easyjob_proyecto/register/registro_exitoso.php
+http://localhost/Easyjob_proyecto/Gestor_usuarios/php/admin/index_gestor_admin.php
+http://localhost/Easyjob_proyecto/Gestor_usuarios/php/user/index_gestor.php
+http://localhost/Easyjob_proyecto/Gestor_usuarios/php/Inactivos/index_inactivos.php
+http://localhost/Easyjob_proyecto/Gestor_usuarios/php/add_gestor.php
+http://localhost/Easyjob_proyecto/Gestor_usuarios/php/user/edit_gestor.php
