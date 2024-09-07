@@ -25,7 +25,7 @@
                 <input placeholder="Buscar servicio" class="nav__link nav__link__buscar"><img src="imagenes/lupa.png" alt="log_eventos" class="imgs__buscar" ></input>
             </li>
             <li class="nav__item__user">
-                <a href="http://localhost/GateGourmet/Movimientos/logout.php" class="cerrar__sesion__link"><img src="imagenes/user_verde.png" alt="Usuario" class="img__usuario"><div class="cerrar__sesion">Cerrar Sesión</div></a>
+                <a href="http://localhost/Easyjob_proyecto/login/login_easyjob.php" class="cerrar__sesion__link"><img src="imagenes/user_verde.png" alt="Usuario" class="img__usuario"><div class="cerrar__sesion">Cerrar Sesión</div></a>
             </li>
         </ul>
     </nav>
