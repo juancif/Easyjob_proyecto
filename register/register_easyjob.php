@@ -38,13 +38,13 @@ if (isset($_POST['Submit'])) {
             $query = $dbConn->prepare($sql);
             $query->bindparam(':labor', $labor);
         } elseif ($rol === 'admin') {
+            // Corregir para insertar en la tabla `admin`
+            $sql = "INSERT INTO admin (nombres_apellidos, email, celular, contrasena) 
+                    VALUES (:nombres_apellidos, :email, :celular, :contrasena)";
+            $query = $dbConn->prepare($sql);
+        } elseif ($rol === 'usuario') {
             $sql = "INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) 
                     VALUES (:nombres_apellidos, :email, :celular, :contrasena)";
-                                $query = $dbConn->prepare($sql);
-                                $query->bindparam(':labor', $labor);
-                    } elseif ($rol === 'usuario') {
-                        $sql = "INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) 
-                                VALUES (:nombres_apellidos, :email, :celular, :contrasena)";
             $query = $dbConn->prepare($sql);
         } else {
             echo "<font color='red'>Rol no válido.</font><br/>";
