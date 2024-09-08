@@ -33,18 +33,17 @@ if (isset($_POST['Submit'])) {
 
         // Dependiendo del rol, insertar en la tabla correspondiente
         if ($rol === 'trabajador') {
-            $sql = "INSERT INTO trabajador (nombres_apellidos, email, celular, contrasena, labor) 
-                    VALUES (:nombres_apellidos, :email, :celular, :contrasena, :labor)";
+            $sql = "INSERT INTO trabajador (nombres_apellidos, email, celular, contrasena, labor, rol) 
+                    VALUES (:nombres_apellidos, :email, :celular, :contrasena, :labor, :rol)";
             $query = $dbConn->prepare($sql);
             $query->bindparam(':labor', $labor);
         } elseif ($rol === 'admin') {
-            // Corregir para insertar en la tabla `admin`
-            $sql = "INSERT INTO admin (nombres_apellidos, email, celular, contrasena) 
-                    VALUES (:nombres_apellidos, :email, :celular, :contrasena)";
+            $sql = "INSERT INTO admin (nombres_apellidos, email, celular, contrasena, rol) 
+                    VALUES (:nombres_apellidos, :email, :celular, :contrasena, :rol)";
             $query = $dbConn->prepare($sql);
         } elseif ($rol === 'usuario') {
-            $sql = "INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) 
-                    VALUES (:nombres_apellidos, :email, :celular, :contrasena)";
+            $sql = "INSERT INTO usuario (nombres_apellidos, email, celular, contrasena, rol) 
+                    VALUES (:nombres_apellidos, :email, :celular, :contrasena, :rol)";
             $query = $dbConn->prepare($sql);
         } else {
             echo "<font color='red'>Rol no válido.</font><br/>";
@@ -56,6 +55,7 @@ if (isset($_POST['Submit'])) {
         $query->bindparam(':email', $email);
         $query->bindparam(':celular', $celular);
         $query->bindparam(':contrasena', $hashed_password);
+        $query->bindparam(':rol', $rol);
 
         // Ejecutar la consulta
         if ($query->execute()) {
@@ -68,6 +68,7 @@ if (isset($_POST['Submit'])) {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -111,7 +112,6 @@ if (isset($_POST['Submit'])) {
                     <div class="input-group tooltip">
                         <label for="contrasena">Contraseña</label>
                         <input type="password" id="contrasena" name="contrasena" required>
-                        <span class="tooltiptext">Recuerda que la contraseña debe tener mínimo 12 caracteres, un carácter especial y una mayúscula.</span>
                     </div>
                     <div class="input-group">
                         <label for="rol">Rol</label>

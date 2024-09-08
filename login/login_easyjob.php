@@ -31,15 +31,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Verifica si las contraseñas están hasheadas
             $hash_contrasena = $usuario['contrasena'];
 
+            if (password_verify($contrasena, $hash_contrasena) || $contrasena === $hash_contrasena) {
+                $area = $usuario['area'];
+
                 // Registrar el inicio de sesión en la tabla de movimientos
                 $sql = "INSERT INTO movimientos (nombres_apellidos, accion, fecha) VALUES (?, 'Inicio de sesión', NOW())";
                 $stmt = $connect->prepare($sql);
                 $stmt->bind_param("s", $nombres_apellidos);
                 $stmt->execute();
-
-                // Guardar el área en la sesión
-                $_SESSION['area'] = $area;
-                $_SESSION['nombres_apellidos'] = $nombres_apellidos;
 
                 // Redirigir al dashboard con el área del usuario
                 header("Location: http://localhost/Easyjob_proyecto/index_usuario.php");
@@ -48,8 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Nombre de usuario o contraseña incorrectos.";
             }
         } else {
-            // Verificar en la tabla de admin
-            $stmt = $connect->prepare("SELECT * FROM admin WHERE nombres_apellidos = ?");
+            // Verificar en la tabla de administradores
+            $stmt = $connect->prepare("SELECT * FROM administradores WHERE nombres_apellidos = ?");
             $stmt->bind_param("s", $nombres_apellidos);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -67,10 +66,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->bind_param("s", $nombres_apellidos);
                     $stmt->execute();
 
-
-                    header("Location: http://localhost/Easyjob_proyecto/index_admin.php");
+                    // Redirigir al dashboard con el área del administrador
+                    header("Location: http://localhost/Easyjob_proyecto/index_trabajador.php");
                     exit();
                 } else {
+                    // Verificar en la tabla de trabajadores
+                    $stmt = $connect->prepare("SELECT * FROM trabajadores WHERE nombres_apellidos = ?");
+                    $stmt->bind_param("s", $nombres_apellidos);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+        
+                    if ($result->num_rows > 0) {
+                        $admin = $result->fetch_assoc();
+                        $hash_contrasena = $admin['contrasena'];
+        
+                        if (password_verify($contrasena, $hash_contrasena) || $contrasena === $hash_contrasena) {
+                            $area = $admin['area'];
+        
+                            // Registrar el inicio de sesión en la tabla de movimientos
+                            $sql = "INSERT INTO movimientos (nombres_apellidos, accion, fecha) VALUES (?, 'Inicio de sesión como administrador', NOW())";
+                            $stmt = $connect->prepare($sql);
+                            $stmt->bind_param("s", $nombres_apellidos);
+                            $stmt->execute();
+        
+                            // Guardar el área en la sesión
+                            $_SESSION['area'] = $area;
+                            $_SESSION['nombres_apellidos'] = $nombres_apellidos;
+        
+                            // Redirigir al dashboard con el área del administrador
+                            header("Location: http://localhost/GateGourmet/Index/index_admin.html");
+                            exit();
+                        } else {
                     echo "Nombre de usuario o contraseña incorrectos.";
                 }
             } else {
@@ -80,11 +106,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Por favor, ingrese nombre de usuario y contraseña.";
     }
+}
 
 // Cerrar la conexión
 $connect->close();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
