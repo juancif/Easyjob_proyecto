@@ -27,11 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows > 0) {
             $usuario = $result->fetch_assoc();
-
-            // Verifica si las contraseñas están hasheadas
             $hash_contrasena = $usuario['contrasena'];
 
-            if (password_verify($contrasena, $hash_contrasena) || $contrasena === $hash_contrasena) {
+            if (password_verify($contrasena, $hash_contrasena)) {
                 $area = $usuario['area'];
 
                 // Registrar el inicio de sesión en la tabla de movimientos
@@ -40,7 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bind_param("s", $nombres_apellidos);
                 $stmt->execute();
 
-                // Redirigir al dashboard con el área del usuario
+                // Guardar el área en la sesión
+                $_SESSION['area'] = $area;
+                $_SESSION['nombres_apellidos'] = $nombres_apellidos;
+
+                // Redirigir al dashboard de usuario
                 header("Location: http://localhost/Easyjob_proyecto/index_usuario.php");
                 exit();
             } else {
@@ -48,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } else {
             // Verificar en la tabla de administradores
-            $stmt = $connect->prepare("SELECT * FROM administradores WHERE nombres_apellidos = ?");
+            $stmt = $connect->prepare("SELECT * FROM admin WHERE nombres_apellidos = ?");
             $stmt->bind_param("s", $nombres_apellidos);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -57,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $admin = $result->fetch_assoc();
                 $hash_contrasena = $admin['contrasena'];
 
-                if (password_verify($contrasena, $hash_contrasena) || $contrasena === $hash_contrasena) {
+                if (password_verify($contrasena, $hash_contrasena)) {
                     $area = $admin['area'];
 
                     // Registrar el inicio de sesión en la tabla de movimientos
@@ -66,41 +68,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->bind_param("s", $nombres_apellidos);
                     $stmt->execute();
 
-                    // Redirigir al dashboard con el área del administrador
-                    header("Location: http://localhost/Easyjob_proyecto/index_trabajador.php");
+                    // Guardar el área en la sesión
+                    $_SESSION['area'] = $area;
+                    $_SESSION['nombres_apellidos'] = $nombres_apellidos;
+
+                    // Redirigir al dashboard de administrador
+                    header("Location: http://localhost/Easyjob_proyecto/index_admin.php");
                     exit();
                 } else {
                     // Verificar en la tabla de trabajadores
-                    $stmt = $connect->prepare("SELECT * FROM trabajadores WHERE nombres_apellidos = ?");
+                    $stmt = $connect->prepare("SELECT * FROM trabajador WHERE nombres_apellidos = ?");
                     $stmt->bind_param("s", $nombres_apellidos);
                     $stmt->execute();
                     $result = $stmt->get_result();
-        
+
                     if ($result->num_rows > 0) {
-                        $admin = $result->fetch_assoc();
-                        $hash_contrasena = $admin['contrasena'];
-        
-                        if (password_verify($contrasena, $hash_contrasena) || $contrasena === $hash_contrasena) {
-                            $area = $admin['area'];
-        
+                        $trabajador = $result->fetch_assoc();
+                        $hash_contrasena = $trabajador['contrasena'];
+
+                        if (password_verify($contrasena, $hash_contrasena)) {
+                            $area = $trabajador['area'];
+
                             // Registrar el inicio de sesión en la tabla de movimientos
-                            $sql = "INSERT INTO movimientos (nombres_apellidos, accion, fecha) VALUES (?, 'Inicio de sesión como administrador', NOW())";
+                            $sql = "INSERT INTO movimientos (nombres_apellidos, accion, fecha) VALUES (?, 'Inicio de sesión como trabajador', NOW())";
                             $stmt = $connect->prepare($sql);
                             $stmt->bind_param("s", $nombres_apellidos);
                             $stmt->execute();
-        
+
                             // Guardar el área en la sesión
                             $_SESSION['area'] = $area;
                             $_SESSION['nombres_apellidos'] = $nombres_apellidos;
-        
-                            // Redirigir al dashboard con el área del administrador
-                            header("Location: http://localhost/GateGourmet/Index/index_admin.html");
+
+                            // Redirigir al dashboard de trabajador
+                            header("Location: http://localhost/Easyjob_proyecto/index_trabajador.php");
                             exit();
                         } else {
-                    echo "Nombre de usuario o contraseña incorrectos.";
+                            echo "Nombre de usuario o contraseña incorrectos.";
+                        }
+                    } else {
+                        echo "Nombre de usuario o contraseña incorrectos.";
+                    }
                 }
-            } else {
-                echo "Nombre de usuario o contraseña incorrectos.";
             }
         }
     } else {
