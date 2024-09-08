@@ -118,6 +118,9 @@ body {
     /* z-index: 10; */
 }
 
+.texto_menu{
+color: white;
+}
 .recuadro_menu{
     /* position: relative; */
     width: 40vh;

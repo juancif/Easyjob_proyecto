@@ -30,10 +30,11 @@
         </ul>
     </nav>
     <div class="menu_lateral">
-        <div class="recuadro_menu"></div>
-        <div class="recuadro_menu"></div>
-        <div class="recuadro_menu"></div>
-        <div class="recuadro_menu"></div>
+        <h2>¿Preguntas Frecuentes</h2>
+        <div class="recuadro_menu"><p class="texto_menu">¿Como edito mi perfil?</p></div>
+        <div class="recuadro_menu"><p class="texto_menu">¿Como me registro</p></div>
+        <div class="recuadro_menu"><p class="texto_menu">¿Como busco un servicio?</p></div>
+        <div class="recuadro_menu"><p class="texto_menu">¿Como puedo contactarme con un usuario?</p></div>
     </div>
 <div class="noticias">
 </div>
