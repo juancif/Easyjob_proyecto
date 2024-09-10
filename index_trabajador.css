@@ -38,12 +38,6 @@ body {
     padding-left: 5px;
 }
 
-/* Contenedor del menú */
-.nav__principal {
-    background: #1117;
-    backdrop-filter: blur(10px); /* Color de fondo del menú */
-    padding: 30px 20px; /* Espaciado interno del menú */
-}
 
 /* Lista del menú */
 .nav__list {
@@ -73,6 +67,7 @@ body {
     padding: 8px 12px; /* Padding interno para el enlace */
     border-radius: 5px; /* Bordes redondeados */
     transition: background-color 0.3s; /* Transición suave para el hover */
+    backdrop-filter: (10);
 }
 
 .nav__link__buscar{
@@ -96,6 +91,7 @@ body {
     color: #ffffff;/* Color del texto */
     font-size: 25px; 
     margin-top: -20px;
+    margin-left: 30vw;
     position:absolute;
 }
 
@@ -108,20 +104,75 @@ body {
     font-weight: bold; /* Hacer el texto en negrita */
 }
 
-.menu_lateral{
-    position: absolute;
-    width: 400px;
-    height: 200vh;
+/* Estilo para el menú lateral */
+.menu_lateral {
+    position: fixed;
+    left: -250px; /* Oculto fuera de la pantalla inicialmente */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    transition: left 0.3s ease; /* Transición suave al mostrar/ocultar */
+}
+
+.menu_lateral.active {
+    left: 0; /* Despliega el menú lateral al hacer clic en el enlace "Servicios" */
+}
+
+/* Otros estilos de la página */
+.nav__principal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #222;
     background: #1117;
     backdrop-filter: blur(10px); /* Color de fondo del menú */
     padding: 30px 20px; /* Espaciado interno del menú */
-    /* z-index: 10; */
 }
+
+.nav__list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav__item {
+    margin-right: 20px;
+}
+
+.nav__link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.nav__link:hover {
+    color: #ffcc00; /* Color de hover para los enlaces */
+}
+
+.imgs__menu {
+    width: 20px;
+    margin-right: 10px;
+}
+
+/* Ajustes para otros elementos según sea necesario */
+.cuadro_perfil {
+    background-color: #eee;
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+}
+
 
 .recuadro_menu{
     /* position: relative; */
-    width: 40vh;
-    height: 20vh;
+    margin-top: 2vw;
+    width: 20vh;
+    height: 5vh;
     background-color: rgb(255, 255, 255);
     backdrop-filter: blur(10px);
     border-radius: 40px; 
@@ -143,7 +194,6 @@ body {
 .cuadro_perfil{
     width: 40vh;
     height: 40vh;
-
     background-image: url(imagenes/imagen_perfil.png);
     background-size: cover;
     border: 1px solid black;
@@ -152,6 +202,49 @@ body {
     margin-left: 60vh;
     border-radius: 20px;
     border: 2px solid black;
+}
+
+
+/* Estilos para la ventana de chat */
+.chat_window {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none; /* Oculto inicialmente */
+    flex-direction: column;
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+}
+
+.chat_window.visible {
+    display: flex; /* Muestra la ventana al agregar la clase 'visible' */
+}
+
+.chat_header {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat_content {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.close_chat {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .cuadro_perfil2{
