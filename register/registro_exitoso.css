@@ -29,7 +29,7 @@ body {
     backdrop-filter: blur(10px);
     position: absolute;
     margin-left: 80vh;
-    margin-top: 150px;
+    margin-top: 30vh;
     border-radius: 20px;
 }
 
@@ -73,9 +73,10 @@ body {
     text-align: center;
     text-align: center;
     padding: 10px;
+    padding-top: 1.1vh;
     color: #fff;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-    margin-top:82.9cqmin
+    margin-top:85vh
 }
 .footer a {
     color: #fff;
