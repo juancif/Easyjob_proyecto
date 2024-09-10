@@ -9,75 +9,86 @@ body {
     min-height: 100vh;
 }
 
-
+/* Estilos para el header */
 .header {
     background: #1117;
     backdrop-filter: blur(10px);
-    padding: 30px 40px;
+    padding: 20px 30px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(143, 187, 138, 0.1);
 }
 
+/* Logo responsivo */
 .logo {
-    max-width: 400px;
+    max-width: 100%;
+    height: auto;
 }
 
-.cuadro_mensaje{
-    width: 450px;
+/* Estilos del cuadro de mensaje */
+.cuadro_mensaje {
+    width: 90%;
+    max-width: 450px;
     height: 300px;
     background: #1117;
     backdrop-filter: blur(10px);
-    position: absolute;
-    margin-left: 80vh;
-    margin-top: 30vh;
+    position: fixed; /* Fijar posición en la ventana */
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.texto_cuadro{
-    font-size: 40px;
-    margin-left: 50px;
-    margin-top:70px;
+/* Estilo del texto dentro del cuadro de mensaje */
+.texto_cuadro {
+    font-size: 2rem;
     color: #dddf;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.boton_volver{
+/* Botón volver con estilos responsivos */
+.boton_volver {
     background-color: #dddf;
     width: 150px;
     height: 40px;
     border-radius: 10px;
-    position: absolute;
-    margin-left: 150px;
-    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    cursor: pointer;
 }
 
-
-
-.link_volver{
+.link_volver {
     text-decoration: none;
     color: black;
     text-align: center;
-    margin-left: -12px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
- .boton_volver:hover{
-    margin-top: 20px;
+/* Hover en el botón volver */
+.boton_volver:hover {
     background-color: rgb(183, 202, 183);
 }
+
+/* Estilos para el footer */
 .footer {
     background: #1117;
     backdrop-filter: blur(10px);
     text-align: center;
-    text-align: center;
     padding: 10px;
-    padding-top: 1.1vh;
     color: #fff;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-    margin-top:85vh
+    margin-top: auto; /* Empuja el footer hacia la parte inferior */
+    position: sticky;
+    bottom: 0;
+    width: 100%;
 }
+
 .footer a {
     color: #fff;
     text-decoration: none;
@@ -86,4 +97,27 @@ body {
 
 .footer a:hover {
     text-decoration: underline;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 600px) {
+    .cuadro_mensaje {
+        width: 90%;
+        max-width: 350px;
+        height: auto;
+        padding: 15px;
+    }
+
+    .texto_cuadro {
+        font-size: 1.5rem;
+    }
+
+    .boton_volver {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .footer {
+        padding: 5px;
+    }
 }
