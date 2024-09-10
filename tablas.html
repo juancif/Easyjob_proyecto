@@ -7,17 +7,17 @@ CREATE TABLE usuario (
   email varchar(40) DEFAULT NULL,
   celular int(11) DEFAULT NULL,
   contrasena varchar(40) DEFAULT NULL,
-  rol enum('usuario','admin','trabajador') NOT NULL,
+  rol enum('usuario','administrador','trabajador') NOT NULL,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE admin (
+CREATE TABLE administrador (
   id int(11) NOT NULL AUTO_INCREMENT,
   nombres_apellidos varchar(40) DEFAULT NULL,
   email varchar(40) DEFAULT NULL,
   celular int(11) DEFAULT NULL,
   contrasena varchar(40) DEFAULT NULL,
-  rol enum('usuario','admin','trabajador') NOT NULL,
+  rol enum('usuario','administrador','trabajador') NOT NULL,
   PRIMARY KEY (id)
 );
 
@@ -29,17 +29,18 @@ CREATE TABLE trabajador (
   celular int(11) DEFAULT NULL,
   contrasena varchar(50) DEFAULT NULL,
   labor varchar(50) DEFAULT NULL,
-  rol enum('usuario','admin','trabajador') NOT NULL,
+  rol enum('usuario','administrador','trabajador') NOT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE movimientos (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    nombre_usuario VARCHAR(255) NOT NULL,
-    accion VARCHAR(255) NOT NULL,
-    fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nombres_apellidos varchar(40) NOT NULL,
+  accion varchar(255) NOT NULL,
+  fecha datetime NOT NULL,
+  PRIMARY KEY (id)
 );
+
 
 CREATE TABLE productos (
   id_producto int(11) NOT NULL AUTO_INCREMENT,

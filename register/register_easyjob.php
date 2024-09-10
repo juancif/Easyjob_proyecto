@@ -48,8 +48,8 @@ if (isset($_POST['Submit'])) {
                     VALUES (:nombres_apellidos, :email, :celular, :contrasena, :labor, :rol)";
             $query = $dbConn->prepare($sql);
             $query->bindparam(':labor', $labor);
-        } elseif ($rol === 'admin') {
-            $sql = "INSERT INTO admin (nombres_apellidos, email, celular, contrasena, rol) 
+        } elseif ($rol === 'administrador') {
+            $sql = "INSERT INTO administrador (nombres_apellidos, email, celular, contrasena, rol) 
                     VALUES (:nombres_apellidos, :email, :celular, :contrasena, :rol)";
             $query = $dbConn->prepare($sql);
         } elseif ($rol === 'usuario') {
@@ -65,7 +65,7 @@ if (isset($_POST['Submit'])) {
         $query->bindparam(':nombres_apellidos', $nombres_apellidos);
         $query->bindparam(':email', $email);
         $query->bindparam(':celular', $celular);
-        $query->bindparam(':contrasena', $hashed_password);
+        $query->bindparam(':contrasena', $contrasena);
         $query->bindparam(':rol', $rol);
 
         // Ejecutar la consulta
@@ -155,7 +155,7 @@ if (isset($_POST['Submit'])) {
                         <label for="rol">Rol</label>
                         <select id="rol" name="rol" required onchange="toggleLaborField()">
                             <option value="">Seleccionar rol</option>
-                            <option value="admin">Administrador</option>
+                            <option value="administrador">Administrador</option>
                             <option value="usuario">Usuario</option>
                             <option value="trabajador">Trabajador</option>
                         </select>
