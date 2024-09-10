@@ -6,11 +6,12 @@ if (isset($_POST['Submit'])) {
     $email = $_POST['email'];
     $celular = $_POST['celular'];
     $contrasena = $_POST['contrasena'];
+    $confirmar_contrasena = $_POST['confirmar_contrasena'];
     $rol = $_POST['rol'];
     $labor = isset($_POST['labor']) ? $_POST['labor'] : null;
 
     // Verificar si algún campo está vacío
-    if (empty($nombres_apellidos) || empty($email) || empty($celular) || empty($contrasena) || empty($rol)) {
+    if (empty($nombres_apellidos) || empty($email) || empty($celular) || empty($contrasena) || empty($confirmar_contrasena)  || empty($rol)) {
         if (empty($nombres_apellidos)) {
             echo "<font color='red'>Campo: nombres_apellidos está vacío.</font><br/>";
         }
@@ -23,11 +24,21 @@ if (isset($_POST['Submit'])) {
         if (empty($contrasena)) {
             echo "<font color='red'>Campo: contraseña está vacío.</font><br/>";
         }
+        if (empty($confirmar_contrasena)) {
+            echo "<font color='red'>Campo: confirmar_contrasena está vacío.</font><br/>";
+        }
         if (empty($rol)) {
             echo "<font color='red'>Campo: rol está vacío.</font><br/>";
         }
         echo "<br/><a href='javascript:self.history.back();'>Volver</a>";
     } else {
+
+            // Verificar si las contraseñas coinciden
+            if ($contrasena !== $confirmar_contrasena) {
+                echo "<font color='red'>Las contraseñas no coinciden.</font><br/>";
+                echo "<br/><a href='javascript:self.history.back();'>Volver</a>";
+                exit();
+            }
         // Hashear la contraseña para mayor seguridad
         $hashed_password = password_hash($contrasena, PASSWORD_DEFAULT);
 
@@ -87,16 +98,38 @@ if (isset($_POST['Submit'])) {
                 laborField.style.display = 'none';
             }
         }
+
+        function validateForm() {
+            var emailField = document.getElementById('email');
+            var emailValue = emailField.value;
+            var passwordField = document.getElementById('contrasena');
+            var confirmPasswordField = document.getElementById('confirmar_contrasena');
+            var passwordValue = passwordField.value;
+            var confirmPasswordValue = confirmPasswordField.value;
+
+            // // Verificar si el correo electrónico tiene el dominio específico
+            // if (!emailValue.endsWith('@')) {
+            //     alert('El correo electrónico debe tener el dominio "@"');
+            //     return false; // Evita el envío del formulario
+            // }
+
+            // Verificar si las contraseñas coinciden
+            if (passwordValue !== confirmPasswordValue) {
+                alert('Las contraseñas no coinciden.');
+                return false; // Evita el envío del formulario
+            }
+
+            return true; // Permite el envío del formulario
+        }
     </script>
 </head>
 <body>
-    <header class="header">
-    </header>
+    <header class="header"></header>
     <main class="main-content">
         <div class="register-container">
             <div class="register-box">
                 <h2>Registro de usuario o trabajador</h2>
-                <form method="post" action="">
+                <form method="post" action="" onsubmit="return validateForm()">
                     <div class="input-group">
                         <label for="nombres_apellidos">Nombres y Apellidos</label>
                         <input type="text" id="nombres_apellidos" name="nombres_apellidos" required>
@@ -113,11 +146,16 @@ if (isset($_POST['Submit'])) {
                         <label for="contrasena">Contraseña</label>
                         <input type="password" id="contrasena" name="contrasena" required>
                     </div>
+                    <div class="input-group tooltip">
+                        <label for="confirmar_contrasena">Confirmar Contraseña</label>
+                        <input type="password" id="confirmar_contrasena" name="confirmar_contrasena" required>
+                        <span class="tooltiptext">Confirma tu contraseña.</span>
+                    </div>
                     <div class="input-group">
                         <label for="rol">Rol</label>
                         <select id="rol" name="rol" required onchange="toggleLaborField()">
                             <option value="">Seleccionar rol</option>
-                            <option value="admin">administrador</option>
+                            <option value="admin">Administrador</option>
                             <option value="usuario">Usuario</option>
                             <option value="trabajador">Trabajador</option>
                         </select>
