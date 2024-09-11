@@ -247,6 +247,51 @@ body {
     cursor: pointer;
 }
 
+/* Contenedor para los cuadros de perfil */
+/* Contenedor para los cuadros de perfil */
+.cuadros_perfiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Estilos para cada cuadro de perfil */
+.cuadro_perfil {
+    width: 200px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.cuadro_perfil h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.cuadro_perfil p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+
+.cuadro_perfil h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.cuadro_perfil p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
 .cuadro_perfil2{
     margin-left: 110vh;
 }

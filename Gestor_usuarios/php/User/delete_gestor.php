@@ -9,15 +9,15 @@ if (isset($_GET['id'])) {
         $dbConn->beginTransaction();
 
         // Obtener datos del usuario a eliminar
-        $sqlSelect = "SELECT * FROM cliente WHERE id = :id";
+        $sqlSelect = "SELECT * FROM usuario WHERE id = :id";
         $stmtSelect = $dbConn->prepare($sqlSelect);
         $stmtSelect->bindParam(':id', $id);
         $stmtSelect->execute();
         $user = $stmtSelect->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            // Eliminar de la tabla cliente
-            $sqlDelete = "DELETE FROM cliente WHERE id = :id";
+            // Eliminar de la tabla usuario
+            $sqlDelete = "DELETE FROM usuario WHERE id = :id";
             $stmtDelete = $dbConn->prepare($sqlDelete);
             $stmtDelete->bindParam(':id', $id);
             $stmtDelete->execute();

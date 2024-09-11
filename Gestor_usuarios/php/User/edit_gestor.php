@@ -20,8 +20,8 @@ if (isset($_POST['update'])) {
             echo "<font color='red'>{$error}</font><br/>";
         }
     } else {
-        // Actualizar el cliente sin mover entre tablas
-        $sql_update = "UPDATE cliente SET nombres=:nombres, email=:email, celular=:celular, contrasena=:contrasena
+        // Actualizar el usuario sin mover entre tablas
+        $sql_update = "UPDATE usuario SET nombres=:nombres, email=:email, celular=:celular, contrasena=:contrasena
                        WHERE id=:id";
         $query_update = $dbConn->prepare($sql_update);
         $query_update->bindParam(':nombres', $nombres);
@@ -39,7 +39,7 @@ if (isset($_POST['update'])) {
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM cliente WHERE id=:id";
+    $sql = "SELECT * FROM usuario WHERE id=:id";
     $query = $dbConn->prepare($sql);
     $query->execute([':id' => $id]);
     $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -68,7 +68,7 @@ if (isset($_GET['id'])) {
     <main class="main-content">
         <div class="register-container">
             <div class="register-box">
-                <h2>Edición de cliente</h2>
+                <h2>Edición de usuario</h2>
                 <form method="post" action="edit_gestor.php">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
                     <div class="input-group">

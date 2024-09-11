@@ -2,7 +2,7 @@
 include_once("config_gestor.php");
 
 // Consulta a la base de datos
-$result = $dbConn->query("SELECT * FROM cliente ORDER BY id ASC");
+$result = $dbConn->query("SELECT * FROM usuario ORDER BY id ASC");
 ?>
 <html>
 <head>

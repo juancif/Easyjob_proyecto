@@ -1,3 +1,13 @@
+<?php
+include_once("config_gestor.php");
+
+// Consulta para obtener todos los trabajadores
+$sql = "SELECT id, nombres_apellidos, celular, labor FROM trabajador WHERE rol = 'trabajador'";
+$query = $dbConn->prepare($sql);
+$query->execute();
+$trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +30,7 @@
             </li>
             <li class="nav__item">
                 <!-- Enlace "Mensajes" que activará la ventana de chat -->
-                <a href="#" class="nav__link" id="mensajesLink"><img src="imagenes/mensajes.png" alt="log_eventos" class="imgs__menu">Mensajes</a>
+                <a href="#" class="nav__link" id="mensajesLink"><img src="imagenes/mensajes.png" alt="log_eventos" class="imgs__menu">Soporte</a>
             </li>
             <li class="nav__item nav__buscar">
                 <input placeholder="Buscar servicio" class="nav__link nav__link__buscar">
@@ -62,15 +72,29 @@
     </div>
 
     <div class="noticias"></div>
-    <div class="cuadro_perfil"></div>
-    <div class="cuadro_perfil cuadro_perfil2"></div>
-    <div class="cuadro_perfil cuadro_perfil3"></div>
-    <div class="cuadro_perfil cuadro_perfil4"></div>
-    <div class="cuadro_perfil cuadro_perfil5"></div>
-    <div class="cuadro_perfil cuadro_perfil6"></div>
-    <div class="cuadro_perfil cuadro_perfil7"></div>
-    <div class="cuadro_perfil cuadro_perfil8"></div>
-    <div class="cuadro_perfil cuadro_perfil9"></div>
+    <div class="cuadros_perfiles">
+    <?php 
+    // Inicializa un contador para usar como clase dinámica
+    $contador = 1; 
+
+    // Itera sobre cada trabajador
+    foreach ($trabajadores as $trabajador): ?>
+        <!-- Hacemos que todo el cuadro sea un enlace -->
+        <a href="trabajador.php?id=<?php echo htmlspecialchars($trabajador['id']); ?>" class="cuadro_perfil_link">
+            <div class="cuadro_perfil cuadro_perfil<?php echo $contador; ?>">
+                <h3><?php echo htmlspecialchars($trabajador['nombres_apellidos']); ?></h3>
+                <p><strong>Celular:</strong> <?php echo htmlspecialchars($trabajador['celular']); ?></p>
+                <p><strong>Labor:</strong> <?php echo htmlspecialchars($trabajador['labor']); ?></p>
+            </div>
+        </a>
+        <?php 
+        // Incrementa el contador para la siguiente iteración
+        $contador++; 
+        ?>
+    <?php endforeach; ?>
+</div>
+
+
 
     <!-- JavaScript para manejar los clics y mostrar/ocultar el menú -->
     <script>

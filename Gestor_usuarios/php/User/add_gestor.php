@@ -17,7 +17,7 @@ if (isset($_POST['Submit'])) {
         try {
             $dbConn->beginTransaction();
             $contrasenaHash = password_hash($contrasena, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO cliente (nombres, email, celular, contrasena) VALUES (:nombres, :email, :celular, :contrasena)";
+            $sql = "INSERT INTO usuario (nombres, email, celular, contrasena) VALUES (:nombres, :email, :celular, :contrasena)";
             $query = $dbConn->prepare($sql);
             $query->bindParam(':nombres', $nombres);
             $query->bindParam(':email', $email);
