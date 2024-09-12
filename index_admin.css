@@ -263,6 +263,10 @@ body {
     margin-top: 20px; /* Ajusta según el espacio que quieras arriba */    
 }
 
+a{
+    text-decoration: none;
+}
+
 /* Estilos para cada cuadro de perfil */
 .cuadro_perfil {
     background-color: #eee;

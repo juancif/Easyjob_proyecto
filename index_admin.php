@@ -33,9 +33,45 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
                 <a href="#" class="nav__link" id="mensajesLink"><img src="imagenes/mensajes.png" alt="log_eventos" class="imgs__menu">Soporte</a>
             </li>
             <li class="nav__item nav__buscar">
-                <input placeholder="Buscar servicio" class="nav__link nav__link__buscar">
-                <img src="imagenes/lupa.png" alt="log_eventos" class="imgs__buscar">
+                <input id="buscarServicio" placeholder="Buscar servicio" class="nav__link nav__link__buscar">
+                <img src="imagenes/lupa.png" alt="Buscar" class="imgs__buscar">
             </li>
+            <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Selección de elementos del DOM
+        const buscarServicio = document.getElementById('buscarServicio');
+        const cuadrosPerfiles = document.querySelector('.cuadros_perfiles');
+
+        // Evento de entrada en el campo de búsqueda
+        buscarServicio.addEventListener('input', function() {
+            const query = buscarServicio.value;
+
+            // Realizar la solicitud AJAX al script PHP
+            fetch('buscar_trabajador.php?busqueda=' + encodeURIComponent(query))
+                .then(response => response.json())
+                .then(data => {
+                    // Limpiar los resultados anteriores
+                    cuadrosPerfiles.innerHTML = '';
+
+                    // Mostrar los resultados nuevos
+                    data.forEach(trabajador => {
+                        const trabajadorHTML = `
+                            <a href="trabajador.php?id=${trabajador.id}" class="cuadro_perfil_link">
+                                <div class="cuadro_perfil">
+                                    <div class="foto_perfil">Foto</div>
+                                    <h3>${trabajador.nombres_apellidos}</h3>
+                                    <p><strong>Celular:</strong> ${trabajador.celular}</p>
+                                    <p><strong>Labor:</strong> ${trabajador.labor}</p>
+                                </div>
+                            </a>
+                        `;
+                        cuadrosPerfiles.insertAdjacentHTML('beforeend', trabajadorHTML);
+                    });
+                })
+                .catch(error => console.error('Error al realizar la solicitud:', error));
+        });
+    });
+</script>
             <li class="nav__item__user">
                 <a href="http://localhost/GateGourmet/Movimientos/logout.php" class="cerrar__sesion__link">
                     <img src="imagenes/user_verde.png" alt="Usuario" class="img__usuario">

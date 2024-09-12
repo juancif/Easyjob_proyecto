@@ -252,6 +252,9 @@ body {
 .right-arrow {
     right: 10px;
 }
+a{
+    text-decoration: none;
+}
 
 /* Contenedor para los cuadros de perfil */
 /* Contenedor para los cuadros de perfil */

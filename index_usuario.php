@@ -14,14 +14,40 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easyjob</title>
-    <link rel="stylesheet" href="index_trabajador.css">
+    <link rel="stylesheet" href="index_usuario.css">
 </head>
 <body>
     <nav class="nav__principal">
         <ul class="nav__list">
-            <li class="nav__item">
-                <a href="http://localhost/GateGourmet/listado_maestro/listado_maestro.php" class="nav__link"><img src="imagenes/ajustes.png" alt="Listado_maestro" class="imgs__menu">Perfil</a>
-            </li>
+<!-- Botón para abrir el modal -->
+<button id="openSettingsModal" class="nav__link">Ajustes Básicos</button>
+
+<!-- Modal de Ajustes -->
+<div id="settingsModal" class="modal">
+    <div class="modal__content">
+        <span class="modal__close" id="closeSettingsModal">&times;</span>
+        <h2>Ajustes Básicos</h2>
+        
+        <!-- Contenido de los Ajustes -->
+        <div class="settings__section">
+            <label for="username">Nombre de Usuario:</label>
+            <input type="text" id="username" name="username" placeholder="Ingrese su nombre de usuario">
+        </div>
+        
+        <div class="settings__section">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="Ingrese su correo electrónico">
+        </div>
+
+        <div class="settings__section">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" placeholder="Ingrese su nueva contraseña">
+        </div>
+
+        <button class="modal__save">Guardar Cambios</button>
+    </div>
+</div>
+
             <li class="nav__item">
                 <a href="#" class="nav__link" id="serviciosLink"><img src="imagenes/servicios.png" alt="Crear datetime" class="imgs__menu">Servicios</a>
             </li>
@@ -33,13 +59,50 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
                 <a href="#" class="nav__link" id="mensajesLink"><img src="imagenes/mensajes.png" alt="log_eventos" class="imgs__menu">Soporte</a>
             </li>
             <li class="nav__item nav__buscar">
-                <input placeholder="Buscar servicio" class="nav__link nav__link__buscar">
-                <img src="imagenes/lupa.png" alt="log_eventos" class="imgs__buscar">
+                <input id="buscarServicio" placeholder="Buscar servicio" class="nav__link nav__link__buscar">
+                <img src="imagenes/lupa.png" alt="Buscar" class="imgs__buscar">
             </li>
+            <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Selección de elementos del DOM
+        const buscarServicio = document.getElementById('buscarServicio');
+        const cuadrosPerfiles = document.querySelector('.cuadros_perfiles');
+
+        // Evento de entrada en el campo de búsqueda
+        buscarServicio.addEventListener('input', function() {
+            const query = buscarServicio.value;
+
+            // Realizar la solicitud AJAX al script PHP
+            fetch('buscar_trabajador.php?busqueda=' + encodeURIComponent(query))
+                .then(response => response.json())
+                .then(data => {
+                    // Limpiar los resultados anteriores
+                    cuadrosPerfiles.innerHTML = '';
+
+                    // Mostrar los resultados nuevos
+                    data.forEach(trabajador => {
+                        const trabajadorHTML = `
+                            <a href="trabajador.php?id=${trabajador.id}" class="cuadro_perfil_link">
+                                <div class="cuadro_perfil">
+                                    <div class="foto_perfil">Foto</div>
+                                    <h3>${trabajador.nombres_apellidos}</h3>
+                                    <p><strong>Celular:</strong> ${trabajador.celular}</p>
+                                    <p><strong>Labor:</strong> ${trabajador.labor}</p>
+                                </div>
+                            </a>
+                        `;
+                        cuadrosPerfiles.insertAdjacentHTML('beforeend', trabajadorHTML);
+                    });
+                })
+                .catch(error => console.error('Error al realizar la solicitud:', error));
+        });
+    });
+</script>
+
             <li class="nav__item__user">
-                <a href="http://localhost/GateGourmet/Movimientos/logout.php" class="cerrar__sesion__link">
+                <a href="http://localhost/Easyjob_proyecto/register/register_easyjob.php" class="cerrar__sesion__link">
                     <img src="imagenes/user_verde.png" alt="Usuario" class="img__usuario">
-                    <div class="cerrar__sesion">Cerrar Sesión</div>
+                    <div class="cerrar__sesion">Registrate</div>
                 </a>
             </li>
         </ul>
@@ -112,7 +175,6 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
             <div class="cuadro_perfil <?php echo $contador; ?>">
                 <!-- Recuadro para la foto de perfil -->
                 <div class="foto_perfil">
-                    Foto
                 </div>
                 <h3><?php echo htmlspecialchars($trabajador['nombres_apellidos']); ?></h3>
                 <p><strong>Celular:</strong> <?php echo htmlspecialchars($trabajador['celular']); ?></p>
@@ -177,5 +239,44 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
             });
         });
     </script>
+    <script>
+function openModal() {
+    document.getElementById("modal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function guardarCambios() {
+    // Aquí puedes agregar la lógica para guardar cambios
+    closeModal(); // Cerrar modal después de guardar los cambios
+}
+</script>
+
+    <script>
+    // Selecciona los elementos
+    const openModalBtn = document.getElementById('openSettingsModal');
+    const closeModalBtn = document.getElementById('closeSettingsModal');
+    const modal = document.getElementById('settingsModal');
+
+    // Mostrar el modal
+    openModalBtn.onclick = function() {
+        modal.style.display = 'block';
+    }
+
+    // Cerrar el modal
+    closeModalBtn.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    // Cerrar el modal cuando se hace clic fuera del contenido
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
+
 </body>
 </html>

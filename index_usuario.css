@@ -4,6 +4,7 @@ body {
     background-position: center;
     margin: 0;
     font-family: 'Arial', sans-serif; /* Fuente más profesional */
+    text-decoration: none;
 }
 
 
@@ -50,6 +51,79 @@ body {
     padding-left:0px;
 }
 
+/* Estilo del Modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 10000; /* Aumentar el z-index para asegurar que se muestre al frente */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
+    overflow: auto; /* Habilitar scroll si el contenido es demasiado grande */
+}
+
+/* Contenido del Modal */
+.modal__content {
+    background-color: #222;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative; /* Posicionamiento relativo para asegurarse de que está al frente */
+    z-index: 10001; /* Aumentar z-index del contenido del modal */
+}
+
+/* Botón de Cierre del Modal */
+.modal__close {
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* Botón de Guardar Cambios */
+.modal__save {
+    background-color: #ffcc00;
+    color: #111;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.modal__save:hover {
+    background-color: #ff9900;
+}
+
+/* Estilos de las Secciones de Ajustes */
+.settings__section {
+    margin-bottom: 15px;
+}
+
+.settings__section label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.settings__section input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+}
+
+
 .imgs__buscar{
     margin-left: -40px;
     margin-top: -4vh;
@@ -62,8 +136,8 @@ body {
 
 /* Imagen del usuario */
 .img__usuario {
-    width: 70px; /* Ajustar el tamaño de la imagen del usuario */
-    height: 70px;
+    width: 9vh; /* Ajustar el tamaño de la imagen del usuario */
+    height: 9vh;
     margin-top: 0px;
     margin-left: -180px;
     padding-right: 20px;
@@ -137,6 +211,7 @@ body {
 /* Botón de cerrar sesión */
 .cerrar__sesion {
     font-weight: bold; /* Hacer el texto en negrita */
+    font-size: 22px;
 }
 
 /* Estilo para el menú lateral */
@@ -263,9 +338,15 @@ body {
     margin-top: 20px; /* Ajusta según el espacio que quieras arriba */    
 }
 
+a{
+    text-decoration: none;
+}
+
 /* Estilos para cada cuadro de perfil */
 .cuadro_perfil {
-    background-color: #eee;
+    background-color: #222;
+    background: #6667;
+    backdrop-filter: blur(10px); /* Color de fondo del menú */
     width: 150px;
     height: 200px;
     margin: 20px;
@@ -277,7 +358,6 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
-    background-color: #f9f9f9;
 }
 
 .cuadro_perfil:hover {
@@ -288,9 +368,10 @@ body {
 .cuadro_perfil h3 {
     margin-bottom: 15px;
     font-size: 20px;
-    color: #333;
+    color: black;
     font-weight: bold;
     transition: color 0.3s;
+    text-decoration: none;
 }
 
 .cuadro_perfil:hover h3 {
@@ -300,11 +381,13 @@ body {
 .cuadro_perfil p {
     margin: 5px 0;
     font-size: 16px;
-    color: #555;
+    color: black;
+    text-decoration: none;
 }
 
 .cuadro_perfil p strong {
-    color: #333;
+    color: black;
+    text-decoration: none;
 }
 
 /* Estilo para el enlace dentro del cuadro de perfil */
@@ -337,8 +420,15 @@ body {
     align-items: center;
     font-size: 12px;
     color: #888;
+    background-color: #222f;
+    background-image: url(imagenes/user_verde.png);
+    background-size: 11vh;
 }
 
+.img_perfil{
+    height: 5vh;
+    width: 10vh;
+}
 
 
 /* Estilos para la ventana de chat */
