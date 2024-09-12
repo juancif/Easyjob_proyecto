@@ -51,6 +51,8 @@ if (isset($_GET['id'])) {
 
         <!-- Botón que redirige a WhatsApp -->
         <a href="https://wa.me/<?php echo preg_replace('/\D/', '', $celular); ?>" target="_blank">Contactar</a>
+        <!-- Botón para regresar a la pantalla anterior -->
+        <button class="boton_regresar" onclick="history.back();">Regresar</button>
     </div>
 </body>
 </html>

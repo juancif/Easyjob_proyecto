@@ -7,6 +7,41 @@ body {
 }
 
 
+/* Otros estilos de la página */
+.nav__principal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #222;
+    background: #1117;
+    backdrop-filter: blur(10px); /* Color de fondo del menú */
+    padding: 30px 20px; /* Espaciado interno del menú */
+}
+
+.nav__list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav__item {
+    margin-right: 20px;
+}
+
+.nav__link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.nav__link:hover {
+    color: #ffcc00; /* Color de hover para los enlaces */
+}
+
 
 .imgs__menu{
     width: 40px;
@@ -38,12 +73,6 @@ body {
     padding-left: 5px;
 }
 
-/* Contenedor del menú */
-.nav__principal {
-    background: #1117;
-    backdrop-filter: blur(10px); /* Color de fondo del menú */
-    padding: 30px 20px; /* Espaciado interno del menú */
-}
 
 /* Lista del menú */
 .nav__list {
@@ -73,6 +102,7 @@ body {
     padding: 8px 12px; /* Padding interno para el enlace */
     border-radius: 5px; /* Bordes redondeados */
     transition: background-color 0.3s; /* Transición suave para el hover */
+    backdrop-filter: (10);
 }
 
 .nav__link__buscar{
@@ -96,6 +126,7 @@ body {
     color: #ffffff;/* Color del texto */
     font-size: 25px; 
     margin-top: -20px;
+    margin-left: 26vw;
     position:absolute;
 }
 
@@ -108,20 +139,62 @@ body {
     font-weight: bold; /* Hacer el texto en negrita */
 }
 
-.menu_lateral{
+/* Estilo para el menú lateral */
+.menu_lateral {
+    position: fixed;
+    left: -250px; /* Oculto fuera de la pantalla inicialmente */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    transition: left 0.3s ease; /* Transición suave al mostrar/ocultar */
+    z-index: 20;
+}
+
+.menu_lateral.active {
+    left: 0; /* Despliega el menú lateral al hacer clic en el enlace "Servicios" */
+}
+
+.link_servicios{
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    margin-left: 5vh;
+    padding-bottom: 3vh;
     position: absolute;
-    width: 400px;
-    height: 200vh;
-    background: #1117;
-    backdrop-filter: blur(10px); /* Color de fondo del menú */
-    padding: 30px 20px; /* Espaciado interno del menú */
-    /* z-index: 10; */
+    margin-top: 3vh;
+}
+
+
+
+.link_servicios2{
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    margin-left: 5vh;
+    padding-bottom: 3vh;
+    position: absolute;
+    margin-top: 3vh;
+
+}
+
+.link_servicios3{
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    margin-left: 4vh;
+    padding-bottom: 3vh;
+    position: absolute;
+    margin-top: 1vh;
+
 }
 
 .recuadro_menu{
     /* position: relative; */
-    width: 40vh;
-    height: 20vh;
+    margin-top: 1.5vw;
+    margin-left: 2vh;
+    width: 20vh;
+    height: 8vh;
     background-color: rgb(255, 255, 255);
     backdrop-filter: blur(10px);
     border-radius: 40px; 
@@ -129,66 +202,189 @@ body {
     margin-bottom: 20px;
     /* z-index: 20; */
 }
-.noticias{
-    width: 140vh;
+
+.recuadro_menu2{
+    width: 21vh;
+    height: 10vh;
+
+}
+.recuadro_menu3{
+    width: 22vh;
+}
+
+.noticias {
+    width: 185vh;
     height: 40vh;
     background-color: gray;
     border: 1px solid black;
-    position: absolute;
-    margin-top: 10vb;
-    margin-left: 60vh;
+    position: relative;
+    margin-top: 10vh;
+    margin-left: 12vh;
     border-radius: 20px;
+    overflow: hidden;
 }
-
-.cuadro_perfil{
-    width: 40vh;
-    height: 40vh;
-
-    background-image: url(imagenes/imagen_perfil.png);
-    background-size: cover;
-    border: 1px solid black;
+.carousel {
+    display: flex; /* Cambiado para alineación en fila */
+    width: 500%; /* Ajuste basado en el número de imágenes */
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+.carousel img {
+    width: 50%; /* Asegura que las imágenes ocupen el ancho total del contenedor */
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 30px; /* Evita que las imágenes se reduzcan */
+}
+.arrow {
     position: absolute;
-    margin-top: 60vb;
-    margin-left: 60vh;
-    border-radius: 20px;
-    border: 2px solid black;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.left-arrow {
+    left: 10px;
+}
+.right-arrow {
+    right: 10px;
 }
 
-.cuadro_perfil2{
-    margin-left: 110vh;
+/* Contenedor para los cuadros de perfil */
+/* Contenedor para los cuadros de perfil */
+.cuadros_perfiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Centra los cuadros en cada fila */
+    margin-top: 20px; /* Ajusta según el espacio que quieras arriba */    
 }
 
-.cuadro_perfil3{
-    margin-left: 160vh;
+/* Estilos para cada cuadro de perfil */
+.cuadro_perfil {
+    background-color: #eee;
+    width: 150px;
+    height: 200px;
+    margin: 20px;
+    position: relative; /* Mantener relativo para poder aplicar el hover */
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 200px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #f9f9f9;
 }
 
-.cuadro_perfil4{
-    margin-left: 60vh;
-    margin-top: 110vh;
+.cuadro_perfil:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.cuadro_perfil5{
-    margin-left: 110vh;
-    margin-top: 110vh;
+.cuadro_perfil h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
-.cuadro_perfil6{
-    margin-left: 160vh;
-    margin-top: 110vh;
+.cuadro_perfil:hover h3 {
+    color: #ffcc00;
 }
 
-.cuadro_perfil7{
-    margin-left: 60vh;
-    margin-top: 160vh;
-    margin-bottom: 10vh;
+.cuadro_perfil p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
 }
 
-.cuadro_perfil8{
-    margin-left: 110vh;
-    margin-top: 160vh;
+.cuadro_perfil p strong {
+    color: #333;
 }
 
-.cuadro_perfil9{
-    margin-left: 160vh;
-    margin-top: 160vh;
+/* Estilo para el enlace dentro del cuadro de perfil */
+.cuadro_perfil a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #28a745;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    
 }
+
+.cuadro_perfil a:hover {
+    background-color: #218838;
+}
+
+/* Estilo para el recuadro de la foto de perfil */
+.cuadro_perfil .foto_perfil {
+    width: 100px;
+    height: 100px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: #888;
+}
+
+
+
+/* Estilos para la ventana de chat */
+.chat_window {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none; /* Oculto inicialmente */
+    flex-direction: column;
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+}
+
+.chat_window.visible {
+    display: flex; /* Muestra la ventana al agregar la clase 'visible' */
+}
+
+.chat_header {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat_content {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.close_chat {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Contenedor para los cuadros de perfil */
+
+
+
+

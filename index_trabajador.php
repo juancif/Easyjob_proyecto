@@ -20,7 +20,7 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
     <nav class="nav__principal">
         <ul class="nav__list">
             <li class="nav__item">
-                <a href="http://localhost/GateGourmet/listado_maestro/listado_maestro.php" class="nav__link"><img src="imagenes/ajustes.png" alt="Listado_maestro" class="imgs__menu">Ajustes</a>
+                <a href="http://localhost/GateGourmet/listado_maestro/listado_maestro.php" class="nav__link"><img src="imagenes/ajustes.png" alt="Listado_maestro" class="imgs__menu">Perfil</a>
             </li>
             <li class="nav__item">
                 <a href="#" class="nav__link" id="serviciosLink"><img src="imagenes/servicios.png" alt="Crear datetime" class="imgs__menu">Servicios</a>
@@ -46,14 +46,14 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
     </nav>
 
     <div class="menu_lateral" id="menuLateral">
-        <div class="recuadro_menu"></div>
-        <div class="recuadro_menu"></div>
-        <div class="recuadro_menu"></div>
-        <div class="recuadro_menu"></div>
-        <div class="recuadro_menu"></div>
-        <div class="recuadro_menu"></div>
-        <div class="recuadro_menu"></div>
-        <div class="recuadro_menu"></div>
+        <div class="recuadro_menu"><a href="" class="link_servicios">Plomeria</a></div>
+        <div class="recuadro_menu"><a href="" class="link_servicios">Cerrajeria</a></div>
+        <div class="recuadro_menu"><a href="" class="link_servicios">Soldadura</a></div>
+        <div class="recuadro_menu"><a href="" class="link_servicios">Pintura</a></div>
+        <div class="recuadro_menu"><a href="" class="link_servicios">Electricista</a></div>
+        <div class="recuadro_menu recuadro_menu2"><a href="" class="link_servicios2">Arreglos generales</a></div>
+        <div class="recuadro_menu recuadro_menu3"><a href="" class="link_servicios3">Arreglos electrodomesticos</a></div>
+        <div class="recuadro_menu"><a href="" class="link_servicios">Otros...</a></div>
     </div>
 
     <!-- Ventana de chat -->
@@ -71,28 +71,58 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-    <div class="noticias"></div>
+    <div class="noticias">
+        <div class="carousel" id="carousel">
+            <img src="imagenes/img_recuadro4.jpg" alt="Noticia 1">
+            <img src="imagenes/img_recuadro2.jpg" alt="Noticia 1">
+            <img src="imagenes/img_recuadro5.jpg" alt="Noticia 1">
+            <img src="imagenes/img_recuadro.jpeg" alt="Noticia 2">
+            <img src="imagenes/img_recuadro3.avif" alt="Noticia 3">
+        </div>
+        <button class="arrow left-arrow" onclick="prevImage()">&#8249;</button>
+        <button class="arrow right-arrow" onclick="nextImage()">&#8250;</button>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('#carousel img');
+        const totalImages = images.length;
+
+        function showImage(index) {
+            document.getElementById('carousel').style.transform = `translateX(-${index * (100 / totalImages)}%)`;
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            showImage(currentIndex);
+        }
+
+        setInterval(nextImage, 4000); // Cambia de imagen cada 3 segundos
+    </script>
     <div class="cuadros_perfiles">
     <?php 
-    // Inicializa un contador para usar como clase dinámica
     $contador = 1; 
-
-    // Itera sobre cada trabajador
     foreach ($trabajadores as $trabajador): ?>
-        <!-- Hacemos que todo el cuadro sea un enlace -->
         <a href="trabajador.php?id=<?php echo htmlspecialchars($trabajador['id']); ?>" class="cuadro_perfil_link">
-            <div class="cuadro_perfil cuadro_perfil<?php echo $contador; ?>">
+            <div class="cuadro_perfil <?php echo $contador; ?>">
+                <!-- Recuadro para la foto de perfil -->
+                <div class="foto_perfil">
+                    Foto
+                </div>
                 <h3><?php echo htmlspecialchars($trabajador['nombres_apellidos']); ?></h3>
                 <p><strong>Celular:</strong> <?php echo htmlspecialchars($trabajador['celular']); ?></p>
                 <p><strong>Labor:</strong> <?php echo htmlspecialchars($trabajador['labor']); ?></p>
             </div>
         </a>
-        <?php 
-        // Incrementa el contador para la siguiente iteración
-        $contador++; 
-        ?>
+        <?php $contador++; ?>
     <?php endforeach; ?>
 </div>
+
 
 
 

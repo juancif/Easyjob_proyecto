@@ -5,6 +5,22 @@ body {
     padding: 0;
 }
 
+.boton_regresar, a {
+    color: white;
+    background-color: #FF6600;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.boton_regresar:hover, a:hover {
+    background-color: #e65c00;
+}
+
 .titulo_detalle{
     display: flex;
     justify-content: space-between;
