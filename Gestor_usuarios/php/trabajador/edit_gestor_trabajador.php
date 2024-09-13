@@ -3,14 +3,14 @@ include_once("config_gestor.php");
 
 if (isset($_POST['update'])) {
     $id = $_POST['id']; // Asegúrate de obtener el ID
-    $nombres_apellidos = $_POST['nombres_apellidos'];
+    $nombres = $_POST['nombres'];
     $email = $_POST['email'];
     $celular = $_POST['celular'];
     $contrasena = $_POST['contrasena'];
 
     // Validación de campos
     $errors = [];
-    if (empty($nombres_apellidos)) $errors[] = "Campo: nombres_apellidos está vacío.";
+    if (empty($nombres)) $errors[] = "Campo: nombres está vacío.";
     if (empty($email)) $errors[] = "Campo: email está vacío.";
     if (empty($celular)) $errors[] = "Campo: celular está vacío.";
     if (empty($contrasena)) $errors[] = "Campo: contrasena está vacío.";
@@ -21,10 +21,10 @@ if (isset($_POST['update'])) {
         }
     } else {
         // Actualizar el usuario sin mover entre tablas
-        $sql_update = "UPDATE usuario SET nombres_apellidos=:nombres_apellidos, email=:email, celular=:celular, contrasena=:contrasena
+        $sql_update = "UPDATE usuario SET nombres=:nombres, email=:email, celular=:celular, contrasena=:contrasena
                        WHERE id=:id";
         $query_update = $dbConn->prepare($sql_update);
-        $query_update->bindParam(':nombres_apellidos', $nombres_apellidos);
+        $query_update->bindParam(':nombres', $nombres);
         $query_update->bindParam(':email', $email);
         $query_update->bindParam(':celular', $celular);
         $query_update->bindParam(':contrasena', $contrasena);
@@ -45,7 +45,7 @@ if (isset($_GET['id'])) {
     $row = $query->fetch(PDO::FETCH_ASSOC);
 
     if ($row) {
-        $nombres_apellidos = $row['nombres_apellidos'];
+        $nombres = $row['nombres'];
         $email = $row['email'];
         $celular = $row['celular'];
         $contrasena = $row['contrasena'];
@@ -72,8 +72,8 @@ if (isset($_GET['id'])) {
                 <form method="post" action="edit_gestor.php">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
                     <div class="input-group">
-                        <label for="nombres_apellidos">Nombres y Apellidos</label>
-                        <input type="text" id="nombres_apellidos" name="nombres_apellidos" required value="<?php echo htmlspecialchars($nombres_apellidos, ENT_QUOTES); ?>">
+                        <label for="nombres">Nombres y Apellidos</label>
+                        <input type="text" id="nombres" name="nombres" required value="<?php echo htmlspecialchars($nombres, ENT_QUOTES); ?>">
                     </div>
                     <div class="input-group">
                         <label for="email">Correo electronico</label>

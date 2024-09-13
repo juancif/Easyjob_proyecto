@@ -13,7 +13,7 @@ body {
 .header {
     background: #1117;
     backdrop-filter: blur(10px);
-    padding: 60px 40px;
+    padding: 7vh 4vh;
     text-align: center;
     box-shadow: 0 4px 6px rgba(143, 187, 138, 0.1);
     margin-bottom: 20px;
@@ -58,11 +58,9 @@ body {
     position: absolute;
     display: inline-block;
     margin: auto;
-    margin-left: 350px;
-    margin-top: -10px;
+    margin-left: 30vh;
+    margin-top: -4vh;
     z-index: 20;
-    margin-left: 300px;
-    margin-top: -10px
 }
 
 .img__usuario{

@@ -26,11 +26,11 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
                 <a href="#" class="nav__link" id="serviciosLink"><img src="imagenes/servicios.png" alt="Crear datetime" class="imgs__menu">Servicios</a>
             </li>
             <li class="nav__item">
-                <a href="#" class="nav__link" id="recomendadosLink"><img src="imagenes/usuarios.png" alt="Gestor_usuarios" class="imgs__menu">Recomendados</a>
+                <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/user/index_gestor.php" class="nav__link" ><img src="imagenes/usuarios.png" alt="Gestor_usuarios" class="imgs__menu">Gestor de usuarios</a>
             </li>
             <li class="nav__item">
                 <!-- Enlace "Mensajes" que activará la ventana de chat -->
-                <a href="#" class="nav__link" id="mensajesLink"><img src="imagenes/mensajes.png" alt="log_eventos" class="imgs__menu">Soporte</a>
+                <a href="#" class="nav__link" id="mensajesLink"><img src="imagenes/mensajes.png" alt="log_eventos" class="imgs__menu">Mensajes</a>
             </li>
             <li class="nav__item nav__buscar">
                 <input id="buscarServicio" placeholder="Buscar servicio" class="nav__link nav__link__buscar">

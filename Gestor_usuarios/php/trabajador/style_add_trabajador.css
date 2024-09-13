@@ -64,7 +64,6 @@ body {
     position: absolute;
     border-radius: 50px;
 }
-
 .register-container {
     background: #1117;
     backdrop-filter: blur(10px);
@@ -76,7 +75,6 @@ body {
     text-align: center;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-top: 2vw;
 }
 
 .register-box h2 {
@@ -126,15 +124,15 @@ body {
     color: white;
     font-family: 'Poppins', sans-serif; /* Asegurando la misma fuente */
     font-size: 16px; /* Asegurando el mismo tamaño de letra */
+    padding: 15px 15px 1px 20px;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
     width: 44%;
-    height: 40px;
-    transition: background 0.3s ease, transform 0.3s;
-    padding-top: 20px;
+    height: 45px;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .input[type="submit"]:hover, .regresar:hover {
@@ -148,12 +146,11 @@ input[type="submit"]:active, .regresar:active {
 
 .buttons {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-between;
     margin-top: 20px;
-    margin-left: -10px;
 }
 
-input[type="submit"] {
+input[type="submit"], .button {
     background: #3d9970; /* Verde oliva */
     color: white;
     font-family: 'Poppins', sans-serif; /* Asegurando la misma fuente */
@@ -186,7 +183,6 @@ input[type="submit"]:active, .button:active {
     padding: 10px;
     color: #fff;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 10vw;
 }
 .footer a {
     color: #fff;

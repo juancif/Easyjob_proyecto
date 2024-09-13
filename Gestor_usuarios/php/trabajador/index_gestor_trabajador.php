@@ -17,8 +17,8 @@ $result = $dbConn->query("SELECT * FROM usuario ORDER BY id ASC");
             </li>
     </header>
     <a href="add_gestor.php" class="botones boton_adicionar">Adicionar usuario</a>
-    <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/Inactivos/index_inactivos.php" class="botones boton_inactivos">Ver trabajadores</a>
-    <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/admin/index_gestor_admin.php" class="botones boton_volver">Ver administradores</a> 
+    <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/Inactivos/index_inactivos.php" class="botones boton_inactivos">Ver inactivos</a>
+    <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/admin/index_gestor_admin.php" class="botones boton_volver">Ver administradores</a>
         <table class="tabla_principal">
         <th class="cuadro_titulo">Usuarios</th>
             <tr class="tabla_secundaria">
@@ -33,7 +33,7 @@ $result = $dbConn->query("SELECT * FROM usuario ORDER BY id ASC");
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($row['id']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['nombres_apellidos']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['nombres']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['email']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['celular']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['contrasena']) . "</td>";

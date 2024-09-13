@@ -2,13 +2,13 @@
 include_once("config_gestor.php");
 
 if (isset($_POST['Submit'])) {
-    $nombres_apellidos = $_POST['nombres_apellidos'];
+    $nombres = $_POST['nombres'];
     $email = $_POST['email'];
     $celular = $_POST['celular'];
     $contrasena = $_POST['contrasena'];
 
-    if (empty($nombres_apellidos) || empty($email) || empty($celular) || empty($contrasena)) {
-        if (empty($nombres_apellidos)) echo "<font color='red'>Campo: nombres_apellidos está vacío.</font><br/>";
+    if (empty($nombres) || empty($email) || empty($celular) || empty($contrasena)) {
+        if (empty($nombres)) echo "<font color='red'>Campo: nombres está vacío.</font><br/>";
         if (empty($email)) echo "<font color='red'>Campo: email está vacío.</font><br/>";
         if (empty($celular)) echo "<font color='red'>Campo: celular está vacío.</font><br/>";
         if (empty($contrasena)) echo "<font color='red'>Campo: contraseña está vacío.</font><br/>";
@@ -17,12 +17,12 @@ if (isset($_POST['Submit'])) {
         try {
             $dbConn->beginTransaction();
             $contrasenaHash = password_hash($contrasena, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) VALUES (:nombres_apellidos, :email, :celular, :contrasena)";
+            $sql = "INSERT INTO usuario (nombres, email, celular, contrasena) VALUES (:nombres, :email, :celular, :contrasena)";
             $query = $dbConn->prepare($sql);
-            $query->bindParam(':nombres_apellidos', $nombres_apellidos);
+            $query->bindParam(':nombres', $nombres);
             $query->bindParam(':email', $email);
             $query->bindParam(':celular', $celular);
-            $query->bindParam(':contrasena', $contrasena);
+            $query->bindParam(':contrasena', $contrasenaHash);
             $query->execute();
             $dbConn->commit();
 
@@ -62,8 +62,8 @@ if (isset($_POST['Submit'])) {
                 <h2>Registro de trabajadores</h2>
                 <form method="post" action="">
                     <div class="input-group">
-                        <label for="nombres_apellidos">Nombres y Apellidos</label>
-                        <input type="text" id="nombres_apellidos" name="nombres_apellidos" required>
+                        <label for="nombres">Nombres y Apellidos</label>
+                        <input type="text" id="nombres" name="nombres" required>
                     </div>
                     <div class="input-group">
                         <label for="email">Correo electronico</label>
@@ -75,7 +75,7 @@ if (isset($_POST['Submit'])) {
                     </div>
                     <div class="input-group tooltip">
                         <label for="contrasena">Contraseña</label>
-                        <input type="password" id="contrasena" name="contrasena" required >
+                        <input type="text" id="contrasena" name="contrasena" required >
                     </div>
 
                     <div class="buttons">

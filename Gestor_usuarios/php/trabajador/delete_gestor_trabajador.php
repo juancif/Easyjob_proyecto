@@ -1,33 +1,32 @@
 <?php
-include_once("config_inactivos.php");
+include_once("config_gestor.php");
 
-if (isset($_GET['nombre_usuario'])) {
-    $nombre_usuario = $_GET['nombre_usuario'];
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
 
     try {
         // Iniciar transacción
         $dbConn->beginTransaction();
 
         // Obtener datos del usuario a eliminar
-        $sqlSelect = "SELECT * FROM inactivos WHERE nombre_usuario = :nombre_usuario";
+        $sqlSelect = "SELECT * FROM usuario WHERE id = :id";
         $stmtSelect = $dbConn->prepare($sqlSelect);
-        $stmtSelect->bindParam(':nombre_usuario', $nombre_usuario);
+        $stmtSelect->bindParam(':id', $id);
         $stmtSelect->execute();
         $user = $stmtSelect->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            // Eliminar de la tabla administradores
-            $sqlDelete = "DELETE FROM inactivos WHERE nombre_usuario = :nombre_usuario";
+            // Eliminar de la tabla usuario
+            $sqlDelete = "DELETE FROM usuario WHERE id = :id";
             $stmtDelete = $dbConn->prepare($sqlDelete);
-            $stmtDelete->bindParam(':nombre_usuario', $nombre_usuario);
+            $stmtDelete->bindParam(':id', $id);
             $stmtDelete->execute();
 
             // Cometer transacción
             $dbConn->commit();
 
-            // Redirigir o mostrar un mensaje de éxito
-            header("Location: http://localhost/GateGourmet/Gestor_usuarios/php/Inactivos/index_inactivos.php?msg=Usuario eliminado correctamente");
-            exit();
+            // Mostrar mensaje de éxito sin redirección
+            header("Location: index_gestor.php?msg=Usuario eliminado correctamente");
         } else {
             throw new Exception("Usuario no encontrado");
         }
