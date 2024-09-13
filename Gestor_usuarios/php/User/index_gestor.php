@@ -19,6 +19,7 @@ $result = $dbConn->query("SELECT * FROM usuario ORDER BY id ASC");
     <a href="add_gestor.php" class="botones boton_adicionar">Adicionar usuario</a>
     <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/Inactivos/index_inactivos.php" class="botones boton_inactivos">Ver trabajadores</a>
     <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/admin/index_gestor_admin.php" class="botones boton_volver">Ver administradores</a> 
+      <div>
         <table class="tabla_principal">
         <th class="cuadro_titulo">Usuarios</th>
             <tr class="tabla_secundaria">

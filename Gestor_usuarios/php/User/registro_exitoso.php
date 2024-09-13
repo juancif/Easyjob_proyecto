@@ -15,7 +15,7 @@
         <h2 class="texto_cuadro">¡Registro exitoso!</h2>
     
     <button class="boton_volver">
-    <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/user/index_gestor.php" class="link_volver">Volver al inicio</a></button>
+    <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/admin/index_gestor_admin.php" class="link_volver">Volver al inicio</a></button>
 </div>
     <footer class="footer">
             <p><a href="#">Ayuda</a> | <a href="#">Términos de servicio</a></p>

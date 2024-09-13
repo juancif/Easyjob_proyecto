@@ -1,0 +1,46 @@
+
+LOGIN:
+
+    http://localhost/Easyjob_proyecto/login/login_easyjob.php
+
+REGISTER:
+
+    http://localhost/Easyjob_proyecto/register/register_easyjob.php
+    http://localhost/Easyjob_proyecto/register/registro_exitoso.php
+
+INDEX:
+    http://localhost/Easyjob_proyecto/index_admin.php
+    http://localhost/Easyjob_proyecto/index_usuario.php
+    http://localhost/Easyjob_proyecto/index_trabajador.php
+
+
+GESTOR DE USUARIOS:
+
+        ADMIN:
+        http://localhost/Easyjob_proyecto/Gestor_usuarios/php/admin/index_gestor_admin.php
+        http://localhost/Easyjob_proyecto/Gestor_usuarios/php/admin/edit_gestor_admin.php
+        http://localhost/Easyjob_proyecto/Gestor_usuarios/php/admin/add_gestor_admin.php
+        http://localhost/Easyjob_proyecto/Gestor_usuarios/php/admin/delete_gestor_admin.php
+
+
+        USUARIO:
+        http://localhost/Easyjob_proyecto/Gestor_usuarios/php/user/index_gestor.php
+        http://localhost/Easyjob_proyecto/Gestor_usuarios/php/user/add_gestor.php
+        http://localhost/Easyjob_proyecto/Gestor_usuarios/php/user/edit_gestor.php
+        http://localhost/Easyjob_proyecto/Gestor_usuarios/php/user/delete_gestor.php
+
+        TRABAJADOR
+
+        http://localhost/Easyjob_proyecto/Gestor_usuarios/php/trabajador/index_gestor_trabajador.php
+        http://localhost/Easyjob_proyecto/Gestor_usuarios/php/trabajador/edit_gestor_trabajador.php
+        http://localhost/Easyjob_proyecto/Gestor_usuarios/php/trabajador/add__gestor_trabajador.php
+        http://localhost/Easyjob_proyecto/Gestor_usuarios/php/trabajador/delete_gestor_trabajador.php
+
+
+
+
+
+
+
+
+
