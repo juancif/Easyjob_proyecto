@@ -73,7 +73,7 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
     });
 </script>
             <li class="nav__item__user">
-                <a href="http://localhost/GateGourmet/Movimientos/logout.php" class="cerrar__sesion__link">
+                <a href="http://localhost/Easyjob_proyecto/login/login_easyjob.php" class="cerrar__sesion__link">
                     <img src="imagenes/user_verde.png" alt="Usuario" class="img__usuario">
                     <div class="cerrar__sesion">Cerrar Sesión</div>
                 </a>
@@ -158,10 +158,6 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
         <?php $contador++; ?>
     <?php endforeach; ?>
 </div>
-
-
-
-
     <!-- JavaScript para manejar los clics y mostrar/ocultar el menú -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {

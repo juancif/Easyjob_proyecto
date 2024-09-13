@@ -252,6 +252,9 @@ body {
 .right-arrow {
     right: 10px;
 }
+a{
+    text-decoration: none;
+}
 
 /* Contenedor para los cuadros de perfil */
 /* Contenedor para los cuadros de perfil */
@@ -261,10 +264,6 @@ body {
     gap: 20px;
     justify-content: center; /* Centra los cuadros en cada fila */
     margin-top: 20px; /* Ajusta según el espacio que quieras arriba */    
-}
-
-a{
-    text-decoration: none;
 }
 
 /* Estilos para cada cuadro de perfil */
