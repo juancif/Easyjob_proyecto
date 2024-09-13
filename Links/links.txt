@@ -44,3 +44,15 @@ GESTOR DE USUARIOS:
 
 
 
+Pruebas unitarias:
+    READ:
+    vendor/bin/phpunit tests/ReadTest.php
+        
+    CREATE:
+    vendor/bin/phpunit tests/RegistroTest.php
+
+    EDIT:
+    vendor/bin/phpunit tests/ActualizarUsuarioTest.php
+
+    DELETE:
+    vendor/bin/phpunit tests/EliminarUsuarioTest.php

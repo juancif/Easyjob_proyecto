@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class RegisterTest extends TestCase
+class RegistroTest extends TestCase
 {
     protected $dbConn;
 
@@ -12,42 +12,42 @@ class RegisterTest extends TestCase
         $this->dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         // Asegúrate de que la base de datos está limpia antes de empezar
-        $this->dbConn->exec("TRUNCATE TABLE cliente"); // Limpia la tabla cliente
+        $this->dbConn->exec("TRUNCATE TABLE usuario"); // Limpia la tabla usuario
     }
 
     public function testRegisterUser()
     {
         // Datos de prueba
-        $nombres = 'jose';
-        $email = 'jose@example.com';
-        $celular = '12345673123';
-        $contrasena = 'Password@122';
+        $nombres_apellidos = "jose";
+        $email = "jose@example.com";
+        $celular = "12345673123";
+        $contrasena = "Password@122";
 
         // Simular el código PHP en lugar de usar $_POST
         // Refactoriza add_gestor.php para aceptar parámetros en lugar de usar $_POST
-        $this->registerUser($nombres, $email, $celular, $contrasena);
+        $this->registerUser($nombres_apellidos, $email, $celular, $contrasena);
 
         // Verificar si el usuario ha sido registrado correctamente
-        $query = $this->dbConn->prepare("SELECT * FROM cliente WHERE email = :email");
+        $query = $this->dbConn->prepare("SELECT * FROM usuario WHERE email = :email");
         $query->bindParam(':email', $email);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
         $this->assertNotEmpty($result, 'El usuario no fue registrado correctamente.');
-        $this->assertEquals($nombres, $result['nombres']);
+        $this->assertEquals($nombres_apellidos, $result['nombres_apellidos']);
         $this->assertEquals($email, $result['email']);
         $this->assertEquals($celular, $result['celular']);
-        $this->assertTrue(password_verify($contrasena, $result['contrasena']));
+        $this->assertEquals($contrasena, $result['contrasena']);
     }
 
-    protected function registerUser($nombres, $email, $celular, $contrasena)
+    protected function registerUser($nombres_apellidos, $email, $celular, $contrasena)
     {
         // Simula el proceso de registro en lugar de usar $_POST
-        $stmt = $this->dbConn->prepare("INSERT INTO cliente (nombres, email, celular, contrasena) VALUES (:nombres, :email, :celular, :contrasena)");
-        $stmt->bindParam(':nombres', $nombres);
+        $stmt = $this->dbConn->prepare("INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) VALUES (:nombres_apellidos, :email, :celular, :contrasena)");
+        $stmt->bindParam(':nombres_apellidos', $nombres_apellidos);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':celular', $celular);
-        $stmt->bindParam(':contrasena', password_hash($contrasena, PASSWORD_DEFAULT));
+        $stmt->bindParam(':contrasena', $contrasena);
         $stmt->execute();
     }
 

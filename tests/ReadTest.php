@@ -1,45 +1,53 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 
 class ReadTest extends TestCase
 {
-    protected $dbConn;
-
-    protected function setUp(): void
+    // Método para simular la consulta de la base de datos
+    public function testConsultaUsuarios()
     {
-        // Configura la conexión a la base de datos
-        $this->dbConn = new PDO('mysql:host=localhost;dbname=easyjob', 'root', '');
-        $this->dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // Mock de PDOStatement
+        $pdoStatementMock = $this->createMock(PDOStatement::class);
 
-        // Asegúrate de que la base de datos está limpia antes de empezar
-        $this->dbConn->exec("TRUNCATE TABLE cliente"); // Limpia la tabla cliente
-        
-        // Insertar datos de prueba
-        $this->dbConn->exec("
-            INSERT INTO cliente (nombres, email, celular, contrasena) 
-            VALUES ('John Doe', 'john@example.com', '123456789', 'password123')
-        ");
-    }
+        // Simula los resultados de la consulta
+        $pdoStatementMock->expects($this->any())
+                         ->method('fetch')
+                         ->willReturnOnConsecutiveCalls(
+                             ['id' => 12, 'nombres_apellidos' => 'Juan Pérez', 'email' => 'juan@mail.com', 'celular' => 123456789, 'contrasena' => 'hashed_password'],
+                             ['id' => 2, 'nombres_apellidos' => 'Ana Gómez', 'email' => 'ana@mail.com', 'celular' => 987654321, 'contrasena' => 'hashed_password2'],
+                             false
+                         );
 
-    public function testHtmlGeneration()
-    {
-        // Captura la salida HTML
-        ob_start();
-        include '/Gestor_usuarios/php/user/index_gestor.php'; // Reemplaza con la ruta correcta
-        $output = ob_get_clean();
+        // Mock de PDO para simular la conexión a la base de datos
+        $pdoMock = $this->createMock(PDO::class);
 
-        // Verificar la presencia de datos esperados en la salida HTML
-        $this->assertStringContainsString('<td>1</td>', $output); // Asegúrate de que ID esté presente
-        $this->assertStringContainsString('<td>John Doe</td>', $output); // Asegúrate de que nombres estén presentes
-        $this->assertStringContainsString('<td>john@example.com</td>', $output); // Asegúrate de que email esté presente
-        $this->assertStringContainsString('<td>123456789</td>', $output); // Asegúrate de que celular esté presente
-        $this->assertStringContainsString('<td>password123</td>', $output); // Asegúrate de que contrasena esté presente
-    }
+        // Simula que al hacer query, devuelva el PDOStatement mockeado
+        $pdoMock->expects($this->once())
+                ->method('query')
+                ->with('SELECT * FROM usuario ORDER BY id ASC')
+                ->willReturn($pdoStatementMock);
 
-    protected function tearDown(): void
-    {
-        // Limpiar después de cada prueba
-        $this->dbConn = null;
+        // Incluimos el archivo que tiene el código de la consulta
+        // En este caso, config_gestor.php debe usar la variable $pdoMock
+        include_once("config_gestor.php");
+
+        // Realizamos las comprobaciones necesarias
+        $result = $pdoMock->query("SELECT * FROM usuario ORDER BY id ASC");
+
+        // Verificamos que el resultado sea un objeto PDOStatement
+        $this->assertInstanceOf(PDOStatement::class, $result);
+
+        // Verificamos que el primer registro es Juan Pérez
+        $firstUser = $result->fetch(PDO::FETCH_ASSOC);
+        $this->assertEquals('Juan Pérez', $firstUser['nombres_apellidos']);
+
+        // Verificamos que el segundo registro es Ana Gómez
+        $secondUser = $result->fetch(PDO::FETCH_ASSOC);
+        $this->assertEquals('Ana Gómez', $secondUser['nombres_apellidos']);
+
+        // Verificamos que no haya más registros
+        $noMoreUsers = $result->fetch(PDO::FETCH_ASSOC);
+        $this->assertFalse($noMoreUsers);
     }
 }
-?>

@@ -16,13 +16,12 @@ if (isset($_POST['Submit'])) {
     } else {
         try {
             $dbConn->beginTransaction();
-            $contrasenaHash = password_hash($contrasena, PASSWORD_BCRYPT);
             $sql = "INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) VALUES (:nombres_apellidos, :email, :celular, :contrasena)";
             $query = $dbConn->prepare($sql);
             $query->bindParam(':nombres_apellidos', $nombres_apellidos);
             $query->bindParam(':email', $email);
             $query->bindParam(':celular', $celular);
-            $query->bindParam(':contrasena', $contrasena);
+            $query->bindParam(':contrasena', $contrasena); // Almacena la contraseña en texto claro
             $query->execute();
             $dbConn->commit();
 
@@ -39,7 +38,6 @@ if (isset($_POST['Submit'])) {
     }
 }
 ?>
-
 
 
 
@@ -71,11 +69,11 @@ if (isset($_POST['Submit'])) {
                     </div>
                     <div class="input-group">
                         <label for="celular">Celular</label>
-                        <input type="number" id="celular" name="celular" required>
+                        <input type="text" id="celular" name="celular" required>
                     </div>
                     <div class="input-group tooltip">
                         <label for="contrasena">Contraseña</label>
-                        <input type="password" id="contrasena" name="contrasena" required >
+                        <input type="text" id="contrasena" name="contrasena" required >
                     </div>
 
                     <div class="buttons">
