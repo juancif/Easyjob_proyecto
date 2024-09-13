@@ -2,35 +2,38 @@
 include_once("config_gestor.php");
 
 if (isset($_POST['Submit'])) {
-    $nombres = $_POST['nombres'];
+    $nombres_apellidos = $_POST['nombres_apellidos'];
     $email = $_POST['email'];
     $celular = $_POST['celular'];
     $contrasena = $_POST['contrasena'];
+    $labor = $_POST['labor'];
 
-    if (empty($nombres) || empty($email) || empty($celular) || empty($contrasena)) {
-        if (empty($nombres)) echo "<font color='red'>Campo: nombres está vacío.</font><br/>";
+    if (empty($nombres_apellidos) || empty($email) || empty($celular) || empty($contrasena) || empty($labor)) {
+        if (empty($nombres_apellidos)) echo "<font color='red'>Campo: nombres_apellidos está vacío.</font><br/>";
         if (empty($email)) echo "<font color='red'>Campo: email está vacío.</font><br/>";
         if (empty($celular)) echo "<font color='red'>Campo: celular está vacío.</font><br/>";
         if (empty($contrasena)) echo "<font color='red'>Campo: contraseña está vacío.</font><br/>";
+        if (empty($labor)) echo "<font color='red'>Campo: labor está vacío.</font><br/>";
         echo "<br/><a href='javascript:self.history.back();'>Volver</a>";
     } else {
         try {
             $dbConn->beginTransaction();
             $contrasenaHash = password_hash($contrasena, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO usuario (nombres, email, celular, contrasena) VALUES (:nombres, :email, :celular, :contrasena)";
+            $sql = "INSERT INTO trabajador (nombres_apellidos, email, celular, contrasena, labor) VALUES (:nombres_apellidos, :email, :celular, :contrasena, :labor)";
             $query = $dbConn->prepare($sql);
-            $query->bindParam(':nombres', $nombres);
+            $query->bindParam(':nombres_apellidos', $nombres_apellidos);
             $query->bindParam(':email', $email);
             $query->bindParam(':celular', $celular);
-            $query->bindParam(':contrasena', $contrasenaHash);
+            $query->bindParam(':contrasena', $contrasena);
+            $query->bindParam(':labor', $labor);
             $query->execute();
             $dbConn->commit();
 
             if ($query->rowCount() > 0) {
-                header("Location: registro_exitoso.php");
+                header("Location: registro_exitoso_trabajador.php");
                 exit();
             } else {
-                echo "<font color='red'>Error al registrar el usuario.</font><br/>";
+                echo "<font color='red'>Error al registrar el trabajador.</font><br/>";
             }
         } catch (Exception $e) {
             if ($dbConn->inTransaction()) $dbConn->rollBack();
@@ -51,7 +54,7 @@ if (isset($_POST['Submit'])) {
     <title>Registro de trabajadores</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;600&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style_add_gestor.css">
+    <link rel="stylesheet" href="../../css/style_add_gestor.css">
 </head>
 <body>
     <header class="header">
@@ -62,8 +65,8 @@ if (isset($_POST['Submit'])) {
                 <h2>Registro de trabajadores</h2>
                 <form method="post" action="">
                     <div class="input-group">
-                        <label for="nombres">Nombres y Apellidos</label>
-                        <input type="text" id="nombres" name="nombres" required>
+                        <label for="nombres_apellidos">Nombres y Apellidos</label>
+                        <input type="text" id="nombres_apellidos" name="nombres_apellidos" required>
                     </div>
                     <div class="input-group">
                         <label for="email">Correo electronico</label>
@@ -77,10 +80,13 @@ if (isset($_POST['Submit'])) {
                         <label for="contrasena">Contraseña</label>
                         <input type="text" id="contrasena" name="contrasena" required >
                     </div>
-
+                    <div class="input-group">
+                        <label for="labor">Labor</label>
+                        <input type="text" id="labor" name="labor" required >
+                    </div>
                     <div class="buttons">
                         <input type="submit" name="Submit" value="Registrarse" class="Registrarse">
-                        <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/user/index_gestor.php" class="regresar">Regresar</a>
+                        <a href="http://localhost/Easyjob_proyecto/Gestor_usuarios/php/trabajador/index_gestor_trabajador.php" class="regresar">Regresar</a>
                     </div>
                 </form>
             </div>
