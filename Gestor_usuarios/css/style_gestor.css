@@ -39,7 +39,7 @@ body {
 
 .cerrar__sesion__link{
     margin: 0;
-    margin-left: 80vh;
+    margin-left: 55vh;
     text-decoration: none;
     text-decoration:#1117;
     color:white ;
@@ -48,7 +48,7 @@ body {
 }
 
 .cerrar__sesion{
-    margin-left: 60vh;
+    margin-left: 40vh;
     list-style-type: none;
     z-index: 20;
 }

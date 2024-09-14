@@ -21,11 +21,7 @@ CREATE TABLE administrador (
   PRIMARY KEY (id)
 );
 
-ALTER TABLE usuario
-MODIFY COLUMN nombres_apellidos VARCHAR(40) NOT NULL,
-MODIFY COLUMN email VARCHAR(40) NOT NULL,
-MODIFY COLUMN celular VARCHAR(20) NOT NULL,
-MODIFY COLUMN contrasena VARCHAR(40) NOT NULL;
+
 
 CREATE TABLE trabajador (
   id int(11) NOT NULL AUTO_INCREMENT,
@@ -61,3 +57,41 @@ CREATE TABLE servicios (
   nombre varchar(50) DEFAULT NULL,
   tarifa int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE usuario
+MODIFY COLUMN nombres_apellidos VARCHAR(40) NOT NULL,
+MODIFY COLUMN email VARCHAR(40) NOT NULL,
+MODIFY COLUMN celular VARCHAR(20) NOT NULL,
+MODIFY COLUMN contrasena VARCHAR(40) NOT NULL;
+
+
+
+
+
+
+INSERT INTO trabajador (nombres_apellidos, email, celular, contrasena, labor, rol) VALUES
+('Juan Pérez', 'juan.perez@mail.com', '3194391427', 'password123', 'soldador', 'trabajador'),
+('María González', 'maria.gonzalez@mail.com', '3245178844', 'password123', 'mecánico', 'trabajador'),
+('Carlos Ramírez', 'carlos.ramirez@mail.com', '3113718663', 'password123', 'pintor', 'trabajador'),
+('Ana Martínez', 'ana.martinez@mail.com', '3136474835', 'password123', 'cerrajero', 'trabajador'),
+('Luis Torres', 'luis.torres@mail.com', '3243335222', 'password123', 'plomero', 'trabajador'),
+('Sofía Herrera', 'sofia.herrera@mail.com', '3194391428', 'password123', 'electricista', 'trabajador'),
+('Ricardo López', 'ricardo.lopez@mail.com', '3245178845', 'password123', 'maestro de obra', 'trabajador'),
+('Laura Morales', 'laura.morales@mail.com', '3113718664', 'password123', 'carpintero', 'trabajador'),
+('David Gómez', 'david.gomez@mail.com', '3136474836', 'password123', 'plomero', 'trabajador'),
+('Carmen Díaz', 'carmen.diaz@mail.com', '3243335223', 'password123', 'pintor', 'trabajador'),
+('Fernando Ruiz', 'fernando.ruiz@mail.com', '3194391429', 'password123', 'soldador', 'trabajador'),
+('Andrea Castro', 'andrea.castro@mail.com', '3245178846', 'password123', 'cerrajero', 'trabajador'),
+('Miguel Vargas', 'miguel.vargas@mail.com', '3113718665', 'password123', 'maestro de obra', 'trabajador'),
+('Patricia Ríos', 'patricia.rios@mail.com', '3136474837', 'password123', 'mecánico', 'trabajador'),
+('Santiago Ospina', 'santiago.ospina@mail.com', '3243335224', 'password123', 'electricista', 'trabajador'),
+('Valentina Gómez', 'valentina.gomez@mail.com', '3194391430', 'password123', 'pintor', 'trabajador'),
+('Javier Rojas', 'javier.rojas@mail.com', '3245178847', 'password123', 'soldador', 'trabajador'),
+('Camila Suárez', 'camila.suarez@mail.com', '3113718666', 'password123', 'carpintero', 'trabajador'),
+('José Ramírez', 'jose.ramirez@mail.com', '3136474838', 'password123', 'plomero', 'trabajador'),
+('Daniela Mejía', 'daniela.mejia@mail.com', '3243335225', 'password123', 'mecánico', 'trabajador'),
+('Manuel Díaz', 'manuel.diaz@mail.com', '3194391431', 'password123', 'electricista', 'trabajador'),
+('Natalia Pérez', 'natalia.perez@mail.com', '3245178848', 'password123', 'cerrajero', 'trabajador'),
+('Esteban Vargas', 'esteban.vargas@mail.com', '3113718667', 'password123', 'maestro de obra', 'trabajador'),
+('Sergio López', 'sergio.lopez@mail.com', '3136474839', 'password123', 'soldador', 'trabajador'),
+('Mónica Martínez', 'monica.martinez@mail.com', '3243335226', 'password123', 'pintor', 'trabajador');

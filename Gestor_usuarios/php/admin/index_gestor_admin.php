@@ -13,7 +13,7 @@ $result = $dbConn->query("SELECT * FROM administrador ORDER BY nombres_apellidos
 <body>
 <header class="header">
         <li class="nav__item__user">
-                <a href="http://localhost/GateGourmet/Index/index_admin.html" class="cerrar__sesion__link"><img src="../../../Imagenes/regresar.png" alt="Usuario" class="img__usuario"><div class="cerrar__sesion">Volver al inicio</div></a>
+                <a href="http://localhost/Easyjob_proyecto/index_admin.php" class="cerrar__sesion__link"><img src="../../../Imagenes/regresar.png" alt="Usuario" class="img__usuario"><div class="cerrar__sesion">Volver al inicio</div></a>
             </li>
     </header>
     <a href="add_gestor_admin.php" class="botones boton_adicionar">Adicionar administrador</a>
