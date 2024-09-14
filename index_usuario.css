@@ -51,56 +51,39 @@ body {
     padding-left:0px;
 }
 
-/* Estilo del Modal */
+/* Ajusta el modal para ocupar toda la pantalla */
 .modal {
     display: none; /* Oculto por defecto */
-    position: fixed;
-    z-index: 10000; /* Aumentar el z-index para asegurar que se muestre al frente */
-    left: 0;
+    position: fixed; /* Fijo en la pantalla */
     top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
-    overflow: auto; /* Habilitar scroll si el contenido es demasiado grande */
+    left: 0;
+    width: 100vw; /* Ocupa todo el ancho de la pantalla */
+    height: 100vh; /* Ocupa todo el alto de la pantalla */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 1000; /* Asegura que se superponga sobre otros elementos */
 }
 
-/* Contenido del Modal */
+/* Ajusta el contenido del modal para que se centre y tenga un tamaño adecuado */
 .modal__content {
-    background-color: #222;
-    margin: 10% auto;
+    position: absolute;
+    top: 50%; /* Centra el contenido verticalmente */
+    left: 50%; /* Centra el contenido horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para centrar correctamente */
+    background-color: white;
     padding: 20px;
-    border-radius: 8px;
-    width: 30%;
-    color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative; /* Posicionamiento relativo para asegurarse de que está al frente */
-    z-index: 10001; /* Aumentar z-index del contenido del modal */
+    border-radius: 10px;
+    width: 80%; /* Ajusta el ancho del modal */
+    max-width: 600px; /* Limita el tamaño máximo del modal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para el modal */
 }
 
-/* Botón de Cierre del Modal */
+/* Botón para cerrar el modal */
 .modal__close {
-    color: #fff;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
     cursor: pointer;
-}
-
-
-/* Botón de Guardar Cambios */
-.modal__save {
-    background-color: #ffcc00;
-    color: #111;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.modal__save:hover {
-    background-color: #ff9900;
 }
 
 /* Estilos de las Secciones de Ajustes */
@@ -264,6 +247,49 @@ body {
 
 }
 
+
+.menu_recomendados {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.menu_recomendados .recomendado_perfil {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu_recomendados .recomendado_perfil:last-child {
+    border-bottom: none;
+}
+
+.recomendado_perfil_link {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.recomendado_perfil h3 {
+    margin: 5px 0;
+}
+
+.recomendado_perfil p {
+    margin: 2px 0;
+}
+
+.recomendado_perfil .foto_perfil {
+    background-color: #eee;
+    height: 50px;
+    width: 50px;
+    margin-bottom: 5px;
+}
+
 .recuadro_menu{
     /* position: relative; */
     margin-top: 1.5vw;
@@ -378,7 +404,7 @@ a{
 
 .cuadro_perfil p {
     margin: 5px 0;
-    font-size: 20px;
+    font-size: 16px;
     color: black;
 }
 

@@ -22,32 +22,6 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
 <!-- Botón para abrir el modal -->
 <button id="openSettingsModal" class="nav__link">Ajustes Básicos</button>
 
-<!-- Modal de Ajustes -->
-<div id="settingsModal" class="modal">
-    <div class="modal__content">
-        <span class="modal__close" id="closeSettingsModal">&times;</span>
-        <h2>Ajustes Básicos</h2>
-        
-        <!-- Contenido de los Ajustes -->
-        <div class="settings__section">
-            <label for="username">Nombre de Usuario:</label>
-            <input type="text" id="username" name="username" placeholder="Ingrese su nombre de usuario">
-        </div>
-        
-        <div class="settings__section">
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" placeholder="Ingrese su correo electrónico">
-        </div>
-
-        <div class="settings__section">
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" placeholder="Ingrese su nueva contraseña">
-        </div>
-
-        <button class="modal__save">Guardar Cambios</button>
-    </div>
-</div>
-
             <li class="nav__item">
                 <a href="#" class="nav__link" id="serviciosLink"><img src="imagenes/servicios.png" alt="Crear datetime" class="imgs__menu">Servicios</a>
             </li>
@@ -118,6 +92,32 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
         <div class="recuadro_menu recuadro_menu3"><a href="" class="link_servicios3">Arreglos electrodomesticos</a></div>
         <div class="recuadro_menu"><a href="" class="link_servicios">Otros...</a></div>
     </div>
+
+<!-- Modal de Ajustes -->
+<div id="settingsModal" class="modal">
+    <div class="modal__content">
+        <span class="modal__close" id="closeSettingsModal">&times;</span>
+        <h2>Ajustes Básicos</h2>
+        
+        <!-- Contenido de los Ajustes -->
+        <div class="settings__section">
+            <label for="username">Nombre de Usuario:</label>
+            <input type="text" id="username" name="username" placeholder="Ingrese su nombre de usuario">
+        </div>
+        
+        <div class="settings__section">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="Ingrese su correo electrónico">
+        </div>
+
+        <div class="settings__section">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" placeholder="Ingrese su nueva contraseña">
+        </div>
+
+        <button class="modal__save">Guardar Cambios</button>
+    </div>
+</div>
 
     <!-- Ventana de chat -->
     <div class="chat_window" id="chatWindow">

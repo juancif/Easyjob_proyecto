@@ -6,7 +6,14 @@ $sql = "SELECT id, nombres_apellidos, celular, labor FROM trabajador WHERE rol =
 $query = $dbConn->prepare($sql);
 $query->execute();
 $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
+
+// Consulta para obtener 4 o 5 trabajadores recomendados aleatoriamente
+$sql_recomendados = "SELECT id, nombres_apellidos, celular, labor FROM trabajador WHERE rol = 'trabajador' ORDER BY RAND() LIMIT 4";
+$query_recomendados = $dbConn->prepare($sql_recomendados);
+$query_recomendados->execute();
+$trabajadores_recomendados = $query_recomendados->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,9 +32,20 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
             <li class="nav__item">
                 <a href="#" class="nav__link" id="serviciosLink"><img src="imagenes/servicios.png" alt="Crear datetime" class="imgs__menu">Servicios</a>
             </li>
-            <li class="nav__item">
-                <a href="#" class="nav__link" id="recomendadosLink"><img src="imagenes/usuarios.png" alt="Gestor_usuarios" class="imgs__menu">Recomendados</a>
-            </li>
+
+        <!-- Aquí agregamos el menú desplegable -->
+        <div class="menu_recomendados" id="menuRecomendados">
+            <?php foreach ($trabajadores_recomendados as $trabajador_recomendado): ?>
+                <a href="trabajador.php?id=<?php echo htmlspecialchars($trabajador_recomendado['id']); ?>" class="recomendado_perfil_link">
+                    <div class="recomendado_perfil">
+                        <div class="foto_perfil">Foto</div>
+                        <h3><?php echo htmlspecialchars($trabajador_recomendado['nombres_apellidos']); ?></h3>
+                        <p><strong>Celular:</strong> <?php echo htmlspecialchars($trabajador_recomendado['celular']); ?></p>
+                        <p><strong>Labor:</strong> <?php echo htmlspecialchars($trabajador_recomendado['labor']); ?></p>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
             <li class="nav__item">
                 <!-- Enlace "Mensajes" que activará la ventana de chat -->
                 <a href="#" class="nav__link" id="mensajesLink"><img src="imagenes/mensajes.png" alt="log_eventos" class="imgs__menu">Soporte</a>

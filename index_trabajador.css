@@ -155,6 +155,60 @@ body {
     left: 0; /* Despliega el menú lateral al hacer clic en el enlace "Servicios" */
 }
 
+/* Ajusta el modal para ocupar toda la pantalla */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Fijo en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Ocupa todo el ancho de la pantalla */
+    height: 100vh; /* Ocupa todo el alto de la pantalla */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 1000; /* Asegura que se superponga sobre otros elementos */
+}
+
+/* Ajusta el contenido del modal para que se centre y tenga un tamaño adecuado */
+.modal__content {
+    position: absolute;
+    top: 50%; /* Centra el contenido verticalmente */
+    left: 50%; /* Centra el contenido horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para centrar correctamente */
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%; /* Ajusta el ancho del modal */
+    max-width: 600px; /* Limita el tamaño máximo del modal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para el modal */
+}
+
+/* Botón para cerrar el modal */
+.modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Estilos de las Secciones de Ajustes */
+.settings__section {
+    margin-bottom: 15px;
+}
+
+.settings__section label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.settings__section input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+}
 .link_servicios{
     font-size: 20px;
     color: black;
@@ -188,6 +242,49 @@ body {
     margin-top: 1vh;
 
 }
+
+.menu_recomendados {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.menu_recomendados .recomendado_perfil {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu_recomendados .recomendado_perfil:last-child {
+    border-bottom: none;
+}
+
+.recomendado_perfil_link {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.recomendado_perfil h3 {
+    margin: 5px 0;
+}
+
+.recomendado_perfil p {
+    margin: 2px 0;
+}
+
+.recomendado_perfil .foto_perfil {
+    background-color: #eee;
+    height: 50px;
+    width: 50px;
+    margin-bottom: 5px;
+}
+
 
 .recuadro_menu{
     /* position: relative; */
@@ -305,7 +402,7 @@ a{
 
 .cuadro_perfil p {
     margin: 5px 0;
-    font-size: 20px;
+    font-size: 16px;
     color: black;
 }
 
