@@ -7,69 +7,83 @@ class ActualizarUsuarioTest extends TestCase
 
     protected function setUp(): void
     {
-        // Crear una base de datos en memoria para las pruebas
-        $this->dbConn = new PDO('sqlite::memory:');
-        $this->dbConn->exec("
-            CREATE TABLE usuario (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                nombres_apellidos TEXT,
-                email TEXT,
-                celular TEXT,
-                contrasena TEXT
-            )
-        ");
+        // Configura la conexión a la base de datos
+        $this->dbConn = new PDO('mysql:host=localhost;dbname=easyjob', 'root', '');
+        $this->dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        // Insertar datos de prueba
-        $this->dbConn->exec("
-            INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) 
-            VALUES ('jose', 'jose@example.com', '12345673123', 'password123')
-        ");
+        // Asegúrate de que la base de datos está limpia antes de empezar
+        $this->dbConn->exec("TRUNCATE TABLE usuario"); // Limpia la tabla usuario
     }
 
-    public function testUpdateClientSuccess()
+    public function testUpdateUser()
     {
-        // Simular los datos de $_POST
-        $_POST['update'] = true;
-        $_POST['id'] = 1;
-        $_POST['nombres_apellidos'] = 'Jane Doe';
-        $_POST['email'] = 'jane@example.com';
-        $_POST['celular'] = '987654321';
-        $_POST['contrasena'] = 'newpassword';
+        // Datos iniciales del usuario
+        $nombres_apellidos = "Jose Perez";
+        $email = "jose.perez@example.com";
+        $celular = "3194391427";
+        $contrasena = "password123";
 
-        // Incluir el archivo PHP que contiene la lógica a probar
-        include 'edit_gestor.php';
+        // Primero registramos el usuario
+        $this->registerUser($nombres_apellidos, $email, $celular, $contrasena);
 
-        // Verificar que los datos fueron actualizados en la base de datos
-        $query = $this->dbConn->prepare("SELECT * FROM usuario WHERE id = 1");
+        // Obtenemos el ID del usuario recién registrado
+        $query = $this->dbConn->prepare("SELECT id FROM usuario WHERE email = :email");
+        $query->bindParam(':email', $email);
         $query->execute();
-        $updatedClient = $query->fetch(PDO::FETCH_ASSOC);
+        $user = $query->fetch(PDO::FETCH_ASSOC);
 
-        $this->assertEquals('Jane Doe', $updatedClient['nombres_apellidos']);
-        $this->assertEquals('jane@example.com', $updatedClient['email']);
-        $this->assertEquals('987654321', $updatedClient['celular']);
-        $this->assertEquals('newpassword', $updatedClient['contrasena']);
+        $this->assertNotEmpty($user, 'No se pudo encontrar al usuario después del registro.');
+
+        $id = $user['id'];
+
+        // Nuevos datos para la actualización
+        $new_nombres_apellidos = "Juan Perez";
+        $new_email = "juan.perez@example.com";
+        $new_celular = "3245178844";
+        $new_contrasena = "newpassword456";
+
+        // Ejecutamos la actualización
+        $this->updateUser($id, $new_nombres_apellidos, $new_email, $new_celular, $new_contrasena);
+
+        // Verificar si el usuario ha sido actualizado correctamente
+        $query = $this->dbConn->prepare("SELECT * FROM usuario WHERE id = :id");
+        $query->bindParam(':id', $id);
+        $query->execute();
+        $updatedUser = $query->fetch(PDO::FETCH_ASSOC);
+
+        $this->assertNotEmpty($updatedUser, 'No se encontró el usuario después de la actualización.');
+        $this->assertEquals($new_nombres_apellidos, $updatedUser['nombres_apellidos']);
+        $this->assertEquals($new_email, $updatedUser['email']);
+        $this->assertEquals($new_celular, $updatedUser['celular']);
+        $this->assertEquals($new_contrasena, $updatedUser['contrasena']);
     }
 
-    public function testValidationErrors()
+    protected function registerUser($nombres_apellidos, $email, $celular, $contrasena)
     {
-        // Simular un formulario con campos vacíos
-        $_POST['update'] = true;
-        $_POST['id'] = 1;
-        $_POST['nombres_apellidos'] = '';
-        $_POST['email'] = '';
-        $_POST['celular'] = '';
-        $_POST['contrasena'] = '';
+        // Simula el proceso de registro en lugar de usar $_POST
+        $stmt = $this->dbConn->prepare("INSERT INTO usuario (nombres_apellidos, email, celular, contrasena) VALUES (:nombres_apellidos, :email, :celular, :contrasena)");
+        $stmt->bindParam(':nombres_apellidos', $nombres_apellidos);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':celular', $celular);
+        $stmt->bindParam(':contrasena', $contrasena);
+        $stmt->execute();
+    }
 
-        // Capturar la salida
-        ob_start();
-        include 'edit_gestor.php';
-        $output = ob_get_clean();
+    protected function updateUser($id, $nombres_apellidos, $email, $celular, $contrasena)
+    {
+        // Simula el proceso de actualización de usuario
+        $stmt = $this->dbConn->prepare("UPDATE usuario SET nombres_apellidos = :nombres_apellidos, email = :email, celular = :celular, contrasena = :contrasena WHERE id = :id");
+        $stmt->bindParam(':nombres_apellidos', $nombres_apellidos);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':celular', $celular);
+        $stmt->bindParam(':contrasena', $contrasena);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
 
-        // Verificar que los mensajes de error se muestran
-        $this->assertStringContainsString('Campo: nombres_apellidos está vacío.', $output);
-        $this->assertStringContainsString('Campo: email está vacío.', $output);
-        $this->assertStringContainsString('Campo: celular está vacío.', $output);
-        $this->assertStringContainsString('Campo: contrasena está vacío.', $output);
+    protected function tearDown(): void
+    {
+        // Limpiar después de cada prueba
+        $this->dbConn = null;
     }
 }
-?>

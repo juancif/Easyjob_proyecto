@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class ReadTest extends TestCase
+class ReadUsuarioTest extends TestCase
 {
     // Método para simular la consulta de la base de datos
     public function testConsultaUsuarios()

@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class RegistroTest extends TestCase
+class RegistroUsuarioTest extends TestCase
 {
     protected $dbConn;
 

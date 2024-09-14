@@ -46,10 +46,10 @@ GESTOR DE USUARIOS:
 
 Pruebas unitarias:
     READ:
-    vendor/bin/phpunit tests/ReadTest.php
+    vendor/bin/phpunit tests/ReadUsuarioTest.php
         
     CREATE:
-    vendor/bin/phpunit tests/RegistroTest.php
+    vendor/bin/phpunit tests/RegistroUsuarioTest.php
 
     EDIT:
     vendor/bin/phpunit tests/ActualizarUsuarioTest.php
