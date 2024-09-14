@@ -14,7 +14,7 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easyjob</title>
-    <link rel="stylesheet" href="index_trabajador.css">
+    <link rel="stylesheet" href="index_admin.css">
 </head>
 <body>
     <nav class="nav__principal">
@@ -58,7 +58,7 @@ $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
                         const trabajadorHTML = `
                             <a href="trabajador.php?id=${trabajador.id}" class="cuadro_perfil_link">
                                 <div class="cuadro_perfil">
-                                    <div class="foto_perfil">Foto</div>
+                                    <div class="foto_perfil"></div>
                                     <h3>${trabajador.nombres_apellidos}</h3>
                                     <p><strong>Celular:</strong> ${trabajador.celular}</p>
                                     <p><strong>Labor:</strong> ${trabajador.labor}</p>

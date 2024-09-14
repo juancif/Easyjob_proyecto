@@ -49,7 +49,7 @@ if (isset($_POST['Submit'])) {
     <title>Registro de trabajadores</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;600&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style_add_gestor.css">
+    <link rel="stylesheet" href="style_add_gestor_user.css">
 </head>
 <body>
     <header class="header">

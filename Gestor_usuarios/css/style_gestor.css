@@ -48,7 +48,7 @@ body {
 }
 
 .cerrar__sesion{
-    margin-left: 550px;
+    margin-left: 60vh;
     list-style-type: none;
     z-index: 20;
 }
@@ -64,8 +64,8 @@ body {
 }
 
 .img__usuario{
-    width: 80px;
-    height: 60px;
+    width: 50px;
+    height: 40px;
     margin-left: -20vh;
     margin-top: -2vh;
     position:relative;
@@ -109,7 +109,7 @@ body {
 
 
 .cuadro_titulo{
-    min-width: 88.37%;
+    min-width: 88.17%;
     max-width: 100%;
     background: #1117;
     backdrop-filter: blur(10px);

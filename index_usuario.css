@@ -200,7 +200,7 @@ body {
     color: #ffffff;/* Color del texto */
     font-size: 25px; 
     margin-top: -20px;
-    margin-left: 26vw;
+    margin-left: 15vw;
     position:absolute;
 }
 
@@ -341,12 +341,11 @@ body {
 a{
     text-decoration: none;
 }
-
 /* Estilos para cada cuadro de perfil */
 .cuadro_perfil {
     background-color: #222;
-    background: #6667;
-    backdrop-filter: blur(10px); /* Color de fondo del menú */
+    background: rgba(99, 98, 98, 0.467);
+    backdrop-filter: blur(10px);
     width: 150px;
     height: 200px;
     margin: 20px;
@@ -371,7 +370,6 @@ a{
     color: black;
     font-weight: bold;
     transition: color 0.3s;
-    text-decoration: none;
 }
 
 .cuadro_perfil:hover h3 {
@@ -380,14 +378,12 @@ a{
 
 .cuadro_perfil p {
     margin: 5px 0;
-    font-size: 16px;
+    font-size: 20px;
     color: black;
-    text-decoration: none;
 }
 
 .cuadro_perfil p strong {
     color: black;
-    text-decoration: none;
 }
 
 /* Estilo para el enlace dentro del cuadro de perfil */
@@ -409,10 +405,10 @@ a{
 }
 
 /* Estilo para el recuadro de la foto de perfil */
-.cuadro_perfil .foto_perfil {
+
+.foto_perfil{
     width: 100px;
     height: 100px;
-    background-color: #e0e0e0;
     border-radius: 50%;
     margin: 0 auto 15px;
     display: flex;
@@ -420,15 +416,27 @@ a{
     align-items: center;
     font-size: 12px;
     color: #888;
-    background-color: #222f;
     background-image: url(imagenes/user_verde.png);
-    background-size: 11vh;
+    background-color: transparent;
+    background-size: cover;
 }
 
-.img_perfil{
-    height: 5vh;
-    width: 10vh;
+
+/* Estilos para la ventana de chat */
+.chat_window {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none; /* Oculto inicialmente */
+    flex-direction: column;
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
 }
+
 
 
 /* Estilos para la ventana de chat */

@@ -97,7 +97,7 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class="buttons">
                         <input type="submit" name="update" value="Editar" class="Registrarse">
-                        <a href="index_gestor.php" class="regresar">Volver</a>
+                        <a href="index_gestor_trabajador.php" class="regresar">Volver</a>
                     </div>
                 </form>
             </div>
